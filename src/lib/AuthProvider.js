@@ -6,6 +6,10 @@ import React from "react";
 
 // Llamadas axios a la API
 import auth from "./auth-service";
+import community from "./community-service";
+import court from "./court-service";
+import home from "./home-service";
+import profile from "./profile-service";
 
 const { Consumer, Provider } = React.createContext();
 
@@ -17,7 +21,7 @@ const withAuth = (WrappedComponent) => {
       return (
         <Consumer>
           {/* El componente <Consumer> provee un callback que recibe el "value" con el objeto Providers */}
-          {({ login, signup, user, logout, isLoggedin }) => {
+          {({ login, signup, user, logout, isLoggedin, getProfile, getAllUsers }) => {
             return (
               <WrappedComponent
                 login={login}
@@ -25,6 +29,8 @@ const withAuth = (WrappedComponent) => {
                 user={user}
                 logout={logout}
                 isLoggedin={isLoggedin}
+                getProfile={getProfile}
+                getAllUsers={getAllUsers}
                 {...this.props}
               />
             );
@@ -38,7 +44,10 @@ const withAuth = (WrappedComponent) => {
 // ! Agrupamos informacion del backend
 // * Provider
 class AuthProvider extends React.Component {
-  state = { isLoggedin: false, user: null, isLoading: true };
+  state = { 
+    isLoggedin: false, 
+    user: null, 
+    isLoading: true };
 
   componentDidMount() {
     auth
@@ -56,7 +65,6 @@ class AuthProvider extends React.Component {
 
     auth
       .signup({ username, password })
-      // ! Maybe here there is an error user: user
       .then((user) => this.setState({ isLoggedin: true, user: user }))
       .catch(({ response }) =>
         this.setState({ message: response.data.statusMessage })
@@ -79,14 +87,29 @@ class AuthProvider extends React.Component {
       .catch((err) => console.log(err));
   };
 
+  getAllUsers = async() => {
+    try {
+      const theUsers = await profile.getAllUsers()
+      return theUsers
+    } catch (error) {
+      
+    }
+}
+
+  getProfile = async(id) => {
+   const user = await profile.getProfile(id)
+   return user
+  }
+
+
   render() {
     const { isLoading, isLoggedin, user } = this.state;
-    const { login, logout, signup } = this;
+    const { login, logout, signup, getProfile, getAllUsers } = this;
 
     return isLoading ? (
       <div>Loading</div>
     ) : (
-      <Provider value={{ isLoggedin, user, login, logout, signup }}>
+      <Provider value={{ isLoggedin, user, login, logout, signup, getProfile, getAllUsers }}>
         {this.props.children}
       </Provider>
     );

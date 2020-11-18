@@ -1,11 +1,33 @@
-import React from 'react'
+import React, { Component } from 'react'
+import { Link } from 'react-router-dom';
+import { withAuth } from "../lib/AuthProvider";
 
-function Home() {
-  return (
-    <div> 
-      <h1>Home Page</h1>
-    </div>
-  )
+class Home extends Component {
+
+  state = {
+    users: []
+  }
+  componentDidMount = async () => {
+    const allUsers = await this.props.getAllUsers()
+    console.log(allUsers, 'these are all the users' )
+    this.setState({
+      users: allUsers
+    })
+  }
+  render() {
+   
+    return (
+      <>
+       {this.state.users.map(function(user, index){
+         return <div key={index}>
+           <h1>{user.username}</h1>
+           <Link to={`/profile/${user._id}`}> Go to my profile </Link>
+         </div>
+       })}
+      </>
+    )
+  }
+  
 }
-
-export default Home;
+// 6 lineas de código
+export default withAuth(Home);
