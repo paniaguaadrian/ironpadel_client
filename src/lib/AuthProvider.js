@@ -7,7 +7,7 @@ import React from "react";
 // Llamadas axios a la API
 import auth from "./auth-service";
 import community from "./community-service";
-import court from "./court-service";
+import booking from "./booking-service";
 import home from "./home-service";
 import profile from "./profile-service";
 
@@ -21,7 +21,7 @@ const withAuth = (WrappedComponent) => {
       return (
         <Consumer>
           {/* El componente <Consumer> provee un callback que recibe el "value" con el objeto Providers */}
-          {({ login, signup, user, logout, isLoggedin, getProfile, getAllUsers }) => {
+          {({ login, signup, user, logout, isLoggedin, getProfile, getAllUsers, getUserBookings, getDates, makeBooking }) => {
             return (
               <WrappedComponent
                 login={login}
@@ -31,6 +31,9 @@ const withAuth = (WrappedComponent) => {
                 isLoggedin={isLoggedin}
                 getProfile={getProfile}
                 getAllUsers={getAllUsers}
+                getUserBookings={getUserBookings}
+                getDates={getDates}
+                makeBooking={makeBooking}
                 {...this.props}
               />
             );
@@ -101,15 +104,29 @@ class AuthProvider extends React.Component {
    return user
   }
 
+  getUserBookings = async() => {
+    const bookings = await home.home()
+    return bookings
+   }
 
+
+   getDates = async () => {
+        const dates = await booking.getDates()
+        return dates
+  } 
+
+  makeBooking = async (name, date, hour) => {
+    const newBooking = await booking.addBooking(name, date, hour)
+    return newBooking
+  }
   render() {
     const { isLoading, isLoggedin, user } = this.state;
-    const { login, logout, signup, getProfile, getAllUsers } = this;
+    const { login, logout, signup, getProfile, getAllUsers, getUserBookings, getDates, makeBooking } = this;
 
     return isLoading ? (
       <div>Loading</div>
     ) : (
-      <Provider value={{ isLoggedin, user, login, logout, signup, getProfile, getAllUsers }}>
+      <Provider value={{ isLoggedin, user, login, logout, signup, getProfile, getAllUsers, getUserBookings, getDates, makeBooking }}>
         {this.props.children}
       </Provider>
     );

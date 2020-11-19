@@ -8,8 +8,13 @@ class Home {
     });
   }
 
-  home() {
-    return this.home.get("/").then(({ data }) => data);
+  home = async() => {
+    try {
+      const res = await this.home.get("/")
+      return res.data
+    } catch (error) {
+      console.log(error)
+    }
   }
 
 }
