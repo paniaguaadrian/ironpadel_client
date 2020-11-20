@@ -49,6 +49,7 @@ class Home extends Component {
               Go to my profile{" "}
             </Link>
             <Link to={`/booking`}> Book a match </Link>
+            <Link to={`/community`}> Enter to the community </Link>
           </div>
         ) : (
           <div>Hello World</div>

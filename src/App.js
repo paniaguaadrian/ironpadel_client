@@ -21,6 +21,7 @@ import Login from "./pages/Login";
 import Profile from "./components/profile/Profile";
 import Booking from "./components/booking/Booking";
 import EditBooking from "./components/booking/EditBooking";
+import Community from "./components/community/Community";
 
 class App extends Component {
   render() {
@@ -31,6 +32,7 @@ class App extends Component {
 
           <Switch>
             <Route exact path="/" component={Home} />
+            <PrivateRoute exact path="/community" component={Community} />
             <AnonRoute exact path="/login" component={Login} />
             <AnonRoute exact path="/signup" component={Signup} />
             <PrivateRoute exact path="/profile/:id" component={Profile} />

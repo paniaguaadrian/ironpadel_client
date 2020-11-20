@@ -8,10 +8,15 @@ class Community {
     });
   }
 
-  community() {
-    return this.community.get("/community").then(({ data }) => data);
-  }
-
+  getCommunity = async () => {
+    try {
+      const theBookings = await this.community.get("/community");
+      console.log(theBookings, "these are the bookings!!!!!!");
+      return theBookings;
+    } catch (error) {
+      console.log(error);
+    }
+  };
 }
 
 // ! DRY possible repetition with court-service
