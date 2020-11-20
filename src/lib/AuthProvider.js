@@ -21,7 +21,21 @@ const withAuth = (WrappedComponent) => {
       return (
         <Consumer>
           {/* El componente <Consumer> provee un callback que recibe el "value" con el objeto Providers */}
-          {({ login, signup, user, logout, isLoggedin, getProfile, getAllUsers, getUserBookings, getDates, makeBooking }) => {
+          {({
+            login,
+            signup,
+            user,
+            logout,
+            isLoggedin,
+            getProfile,
+            getAllUsers,
+            getUserBookings,
+            getDates,
+            makeBooking,
+            getUserGames,
+            editBooking,
+            getBooking,
+          }) => {
             return (
               <WrappedComponent
                 login={login}
@@ -34,6 +48,9 @@ const withAuth = (WrappedComponent) => {
                 getUserBookings={getUserBookings}
                 getDates={getDates}
                 makeBooking={makeBooking}
+                getUserGames={getUserGames}
+                editBooking={editBooking}
+                getBooking={getBooking}
                 {...this.props}
               />
             );
@@ -47,10 +64,11 @@ const withAuth = (WrappedComponent) => {
 // ! Agrupamos informacion del backend
 // * Provider
 class AuthProvider extends React.Component {
-  state = { 
-    isLoggedin: false, 
-    user: null, 
-    isLoading: true };
+  state = {
+    isLoggedin: false,
+    user: null,
+    isLoading: true,
+  };
 
   componentDidMount() {
     auth
@@ -90,43 +108,88 @@ class AuthProvider extends React.Component {
       .catch((err) => console.log(err));
   };
 
-  getAllUsers = async() => {
+  getAllUsers = async () => {
     try {
-      const theUsers = await profile.getAllUsers()
-      return theUsers
-    } catch (error) {
-      
-    }
-}
+      const theUsers = await profile.getAllUsers();
+      return theUsers;
+    } catch (error) {}
+  };
 
-  getProfile = async(id) => {
-   const user = await profile.getProfile(id)
-   return user
-  }
+  getProfile = async (id) => {
+    const user = await profile.getProfile(id);
+    return user;
+  };
 
-  getUserBookings = async() => {
-    const bookings = await home.home()
-    return bookings
-   }
+  // getUserBookings deberia de ser getUser
+  getUserBookings = async () => {
+    const bookings = await home.home();
+    return bookings;
+  };
 
+  getDates = async () => {
+    const dates = await booking.getDates();
+    return dates;
+  };
 
-   getDates = async () => {
-        const dates = await booking.getDates()
-        return dates
-  } 
+  makeBooking = async (name, date, hour, participants) => {
+    const newBooking = await booking.addBooking(name, date, hour, participants);
 
-  makeBooking = async (name, date, hour) => {
-    const newBooking = await booking.addBooking(name, date, hour)
-    return newBooking
-  }
+    return newBooking;
+  };
+
+  editBooking = async (id) => {
+    const newBooking = await booking.editBooking(id);
+    console.log(id, "this should be the id");
+    return newBooking;
+  };
+
+  // !
+  getBooking = async (id) => {
+    const theBooking = await booking.getBooking(id);
+    return theBooking;
+  };
+
+  getUserGames = async () => {
+    const theBookings = await booking.getUserBookings();
+    return theBookings;
+  };
+
   render() {
     const { isLoading, isLoggedin, user } = this.state;
-    const { login, logout, signup, getProfile, getAllUsers, getUserBookings, getDates, makeBooking } = this;
+    const {
+      login,
+      logout,
+      signup,
+      getProfile,
+      getAllUsers,
+      getUserBookings,
+      getDates,
+      makeBooking,
+      getUserGames,
+      editBooking,
+      getBooking,
+    } = this;
 
     return isLoading ? (
       <div>Loading</div>
     ) : (
-      <Provider value={{ isLoggedin, user, login, logout, signup, getProfile, getAllUsers, getUserBookings, getDates, makeBooking }}>
+      <Provider
+        value={{
+          isLoggedin,
+          user,
+          login,
+          logout,
+          signup,
+          getProfile,
+          getAllUsers,
+          getUserBookings,
+          getDates,
+          makeBooking,
+          getUserGames,
+          editBooking,
+          getBooking,
+        }}
+      >
         {this.props.children}
       </Provider>
     );

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import { withAuth } from "../../lib/AuthProvider";
+import bookingservice from "../../lib/booking-service";
 
 class Booking extends Component {
   state = {
@@ -14,13 +14,23 @@ class Booking extends Component {
     player2: "",
     player3: "",
     player4: "",
+    booking: {},
+    id: "",
+  };
+
+  getBooking = async () => {
+    const { params } = this.props.match;
+    // const dates = await this.props.getDates();
+    const theBooking = await bookingservice.getBooking(params.id);
+    console.log(theBooking, "this is the booking!!!!");
+    this.setState({
+      booking: theBooking,
+      id: params.id,
+    });
   };
 
   componentDidMount = async () => {
-    const dates = await this.props.getDates();
-    this.setState({
-      dates: dates,
-    });
+    this.getBooking();
   };
 
   handleChange = (e) => {
@@ -29,23 +39,18 @@ class Booking extends Component {
     this.setState({ [name]: value });
   };
 
-  handleFormSubmit = (event) => {
-    event.preventDefault();
-    const { name, date, hour, player2, player3, player4 } = this.state;
-
-    const participants = [this.props.user.username, player2, player3, player4];
-    this.setState({ participants: participants });
-
-    this.props.makeBooking({ name, date, hour, participants });
-    this.setState({
-      name: "",
-      date: {},
-      participants: [],
-      dates: [],
-      month: "November",
-      hour: "",
-      day: 0,
-    });
+  handleFormSubmit = async (event) => {
+    try {
+      event.preventDefault();
+      const { name, id } = this.state;
+      console.log(id, "this is the id");
+      await bookingservice.editBooking({ name, id });
+      this.setState({
+        name: "",
+      });
+    } catch (error) {
+      console.log(error, "the error originated here");
+    }
   };
 
   getDay = (event) => {
@@ -78,11 +83,12 @@ class Booking extends Component {
           <input
             type="text"
             name="name"
+            // !
             value={name}
             onChange={this.handleChange}
           />
 
-          <label>Month:</label>
+          {/* <label>Month:</label>
           <select>
             <option name="month" value={month}>
               November
@@ -118,8 +124,8 @@ class Booking extends Component {
                     </option>
                   );
                 })}
-          </select>
-          <div>
+          </select> */}
+          {/* <div>
             <h2>Select your players</h2>
             <label>Player #2</label>
             <input
@@ -142,7 +148,7 @@ class Booking extends Component {
               placeholder="Write user email here"
               onChange={this.handleChange}
             />
-          </div>
+          </div> */}
 
           <input type="submit" value="Booking" />
         </form>

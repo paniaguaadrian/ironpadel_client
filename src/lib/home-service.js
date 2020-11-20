@@ -8,15 +8,14 @@ class Home {
     });
   }
 
-  home = async() => {
+  home = async () => {
     try {
-      const res = await this.home.get("/")
-      return res.data
+      const res = await this.home.get("/");
+      return res.data;
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
-
+  };
 }
 
 const axiosRequestFunctions = new Home();

@@ -20,6 +20,7 @@ import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Profile from "./components/profile/Profile";
 import Booking from "./components/booking/Booking";
+import EditBooking from "./components/booking/EditBooking";
 
 class App extends Component {
   render() {
@@ -34,6 +35,7 @@ class App extends Component {
             <AnonRoute exact path="/signup" component={Signup} />
             <PrivateRoute exact path="/profile/:id" component={Profile} />
             <PrivateRoute exact path="/booking" component={Booking} />
+            <PrivateRoute exact path="/booking/:id" component={EditBooking} />
           </Switch>
         </div>
       </AuthProvider>
