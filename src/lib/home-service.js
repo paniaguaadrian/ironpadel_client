@@ -3,7 +3,7 @@ import axios from "axios";
 class Home {
   constructor() {
     this.home = axios.create({
-      baseURL: "http://localhost:4000",
+      baseURL: process.env.REACT_APP_API_URI,
       withCredentials: true,
     });
   }
