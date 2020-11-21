@@ -1,14 +1,20 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { withAuth } from "../../../lib/AuthProvider";
+import { Button } from "../Button";
 
 // CSS
 import "./Navbar.css";
-import logo from "./ironpadel_verde.png";
+// import logo from "./ironpadel_verde.png";
 
 class Navbar extends Component {
   state = {
     clicked: false,
+  };
+
+  // Function to change the icon when clicked
+  handleClick = () => {
+    this.setState({ clicked: !this.state.clicked });
   };
 
   render() {
@@ -16,58 +22,63 @@ class Navbar extends Component {
     return (
       <nav className="NavbarItems">
         <Link to={"/"}>
-          <img src={logo} className="ironPadel_logo" alt="" />
+          <img src="/ironpadel_verde.png" className="ironPadel_logo" alt="" />
         </Link>
-        <div className="menu-icon"></div>
+        <div className="menu-icon" onClick={this.handleClick}>
+          <i
+            className={this.state.clicked ? "fas fa-times" : "fas fa-bars"}
+          ></i>
+        </div>
         {isLoggedin ? (
           <>
-            <ul className="">
+            <ul className={this.state.clicked ? "nav-menu active" : "nav-menu"}>
               <li className="navbar-link">
-                <Link to="/">
-                  <a>Home</a>
+                <Link className="navbar-text" to="/">
+                  Home
                 </Link>
               </li>
               <li className="navbar-link">
-                <Link to={`/profile/${user._id}`}>
-                  <a>Profile</a>
+                <Link className="navbar-text" to={`/profile/${user._id}`}>
+                  Profile
                 </Link>
               </li>
 
               <li className="navbar-link">
-                <Link to="/booking">
-                  <a>Booking</a>
+                <Link className="navbar-text" to="/booking">
+                  Booking
                 </Link>
               </li>
               <li className="navbar-link">
-                <Link to="/community">
-                  <a>Community</a>
+                <Link className="navbar-text" to="/community">
+                  Community
                 </Link>
               </li>
               {/* <p className="navbar-user">username: {user.username}</p> */}
               <li className="navbar-link">
-                <button className="navbar-button" onClick={logout}>
+                <Button onClick={logout}>Log Out</Button>
+                {/* <button className="navbar-button" onClick={logout}>
                   Logout
-                </button>
+                </button> */}
               </li>
             </ul>
           </>
         ) : (
           <>
-            <ul>
+            <ul className={this.state.clicked ? "nav-menu active" : "nav-menu"}>
               <li className="navbar-link">
-                <Link to="/">
-                  <a>Home</a>
+                <Link className="navbar-text" to="/">
+                  Home
                 </Link>
               </li>
 
               <li className="navbar-link">
-                <Link to="/booking">
-                  <a>Booking</a>
+                <Link className="navbar-text" to="/booking">
+                  Booking
                 </Link>
               </li>
               <li className="navbar-link">
-                <Link to="/community">
-                  <a>Community</a>
+                <Link className="navbar-text" to="/community">
+                  Community
                 </Link>
               </li>
               <li className="navbar-link">

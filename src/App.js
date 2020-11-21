@@ -32,7 +32,7 @@ class App extends Component {
 
           <Switch>
             <Route exact path="/" component={Home} />
-            <PrivateRoute exact path="/community" component={Community} />
+            <Route exact path="/community" component={Community} />
             <AnonRoute exact path="/login" component={Login} />
             <AnonRoute exact path="/signup" component={Signup} />
             <PrivateRoute exact path="/profile/:id" component={Profile} />
