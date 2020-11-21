@@ -17,6 +17,7 @@ class Booking extends Component {
     player4: "",
     booking: {},
     id: "",
+    count: 0
   };
 
   getBooking = async () => {
@@ -27,16 +28,21 @@ class Booking extends Component {
     this.setState({
       booking: theBooking,
       id: params.id,
+      participants: theBooking.players,
+
     });
   };
 
   componentDidMount = async () => {
     this.getBooking();
+    this.setState({
+      count: this.state.participants.length
+    })
   };
 
-  deleteTheBooking = async(id) => {
-    await bookingservice.deleteBooking(id)
-  }
+  // deleteTheBooking = async(id) => {
+  //   await bookingservice.deleteBooking(id)
+  // }
 
   handleChange = (e) => {
     const { name, value } = e.target;
@@ -77,11 +83,14 @@ class Booking extends Component {
     });
   };
 
+
   render() {
     const { name, month } = this.state;
+    console.log(this.state.booking, 'this is the booking')
+    console.log(this.state.participants.length, 'these are the number of participants')
     return (
       <div>
-        <h1>Book your match</h1>
+        <h1>Edit your match</h1>
 
         <form onSubmit={this.handleFormSubmit}>
           <label>Name:</label>
@@ -90,9 +99,45 @@ class Booking extends Component {
             name="name"
             // !
             value={name}
+            placeholder={this.state.booking.name}
             onChange={this.handleChange}
           />
-          <button onClick={this.deleteTheBooking(this.state.id)}>Delete booking</button>
+          {this.state.booking.date ?
+          <div>
+          <h3>{this.state.booking.date.day} {this.state.booking.date.month} {this.state.booking.hour}</h3>
+          </div> : null}
+          
+          {this.state.participants !== 0 ? this.state.participants.map(function (player, index){
+             return <h3>Player {index + 1}: {player.username}</h3>
+          }) : null }
+          {this.state.participants.length === 1 ? 
+             <div>
+            <label>Add another player: </label>
+            <input type="text" name={`player${this.state.participants.length+1}`}/>
+           
+            <label>Add another player: </label>
+            <input type="text" name={`player${this.state.participants.length+2}`}/>
+
+            <label>Add another player: </label>
+            <input type="text" name={`player${this.state.participants.length+3}`}/>
+            </div>
+            : null}
+          {this.state.participants.length === 2 ? 
+             <div>
+            <label>Add another player: </label>
+            <input type="text" name={`player${this.state.participants.length+1}`}/>
+           
+            <label>Add another player: </label>
+            <input type="text" name={`player${this.state.participants.length+2}`}/>
+            </div>
+            : null}
+            {this.state.participants.length === 3 ? 
+             <div>
+            <label>Add another player: </label>
+            <input type="text" name={`player${this.state.participants.length+1}`}/>
+            </div>
+            : null}
+          {/* <button onClick={this.deleteTheBooking(this.state.id)}>Delete booking</button> */}
 
           {/* <label>Month:</label>
           <select>
@@ -156,7 +201,7 @@ class Booking extends Component {
             />
           </div> */}
 
-          <input type="submit" value="Booking" />
+          <input type="submit" value="Edit" />
         </form>
       </div>
     );

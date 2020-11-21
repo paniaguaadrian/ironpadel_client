@@ -86,8 +86,9 @@ class Profile extends Component {
           </form>
         </div>) : (<div>
           <img src='/default-profile.jpg' alt="" style= {{width: 100}}/>
-        <h1>{this.state.user.username}</h1>
-        <p>{this.state.user.description}</p>
+        <h1>Name: {this.state.user.username}</h1>
+        <h3>Email: {this.state.user.email}</h3>
+        <p>Description: {this.state.user.description}</p>
        
         </div>)}
         

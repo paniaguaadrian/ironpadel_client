@@ -32,8 +32,17 @@ class Booking extends Component {
   handleFormSubmit = (event) => {
     event.preventDefault();
     const { name, date, hour, player2, player3, player4 } = this.state;
-
-    const participants = [this.props.user.username, player2, player3, player4];
+    const participants = [this.props.user.username];
+    if(player2 !== ''){
+      participants.push(player2)
+    }
+    if(player3 !== ''){
+      participants.push(player3)
+    }
+    if(player4 !== ''){
+      participants.push(player4)
+    }
+    
     this.setState({ participants: participants });
 
     this.props.makeBooking({ name, date, hour, participants });

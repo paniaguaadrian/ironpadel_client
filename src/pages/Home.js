@@ -30,7 +30,7 @@ class Home extends Component {
         {this.props.isLoggedin ? (
           <div>
             <h1>{this.props.user.username}</h1>
-            {this.state.bookings
+            {this.state.bookings && this.state.bookings.length !== 0
               ? this.state.bookings.map(function (booking, index) {
                   return (
                     <div key={index}>
