@@ -63,6 +63,18 @@ class Booking {
   };
 
   // ! WE NEED TO ADD DELETE
+
+  deleteBooking = async (id) => {
+    try {
+      console.log(id, 'is this the id???')
+      
+      const res = await this.booking.post(`/booking/deleteBooking/${id}`);
+      return res.data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
 }
 
 const axiosRequestFunctions = new Booking();

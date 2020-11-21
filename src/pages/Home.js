@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { withAuth } from "../lib/AuthProvider";
+import bookingservice from "../lib/booking-service";
 
 class Home extends Component {
   state = {
@@ -19,6 +20,10 @@ class Home extends Component {
     });
   };
 
+  deleteTheBooking = async(id) => {
+    await bookingservice.deleteBooking(id)
+  }
+
   render() {
     return (
       <>
@@ -36,7 +41,7 @@ class Home extends Component {
                       <p>Hour: {booking.hour}</p>
                       {booking.players
                         ? booking.players.map((player, index) => {
-                            return <p key={index}>{player.username}</p>;
+                            return <p key={index}><Link to={`/profile/${player._id}`}>{player.username}</Link></p>;
                           })
                         : null}
                       <Link to={`/booking/${booking._id}`}>Edit booking</Link>

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import { withAuth } from "../../lib/AuthProvider";
 import bookingservice from "../../lib/booking-service";
 
@@ -32,6 +33,10 @@ class Booking extends Component {
   componentDidMount = async () => {
     this.getBooking();
   };
+
+  deleteTheBooking = async(id) => {
+    await bookingservice.deleteBooking(id)
+  }
 
   handleChange = (e) => {
     const { name, value } = e.target;
@@ -87,6 +92,7 @@ class Booking extends Component {
             value={name}
             onChange={this.handleChange}
           />
+          <button onClick={this.deleteTheBooking(this.state.id)}>Delete booking</button>
 
           {/* <label>Month:</label>
           <select>
