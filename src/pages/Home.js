@@ -24,7 +24,8 @@ class Home extends Component {
       <>
         {this.props.isLoggedin ? (
           <div>
-            <h1>{this.props.user.username}</h1>
+            <h1>Welcome back {this.props.user.username}</h1>
+            <h4>Let's start by booking a game!</h4>
             {this.state.bookings
               ? this.state.bookings.map(function (booking, index) {
                   return (
@@ -52,7 +53,7 @@ class Home extends Component {
             <Link to={`/community`}> Enter to the community </Link>
           </div>
         ) : (
-          <div>Hello World</div>
+          <div>This is home without log in</div>
         )}
       </>
     );

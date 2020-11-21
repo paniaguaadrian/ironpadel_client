@@ -1,0 +1,35 @@
+.NavbarItems {
+  background: linear-gradient(90deg, #4da857 0%, #20c7b1 100%);
+
+  height: 300px;
+  margin-bottom: 4rem;
+  padding: 2rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+}
+
+.ironPadel_logo {
+  width: 100px;
+  justify-self: start;
+  margin-left: 20px;
+  cursor: pinter;
+}
+
+.navbar-link {
+  margin-bottom: 1rem;
+}
+
+.navbar-link a {
+  color: white;
+}
+
+.navbar-button {
+  border: none;
+  height: 2rem;
+  width: 5rem;
+  color: white;
+  background-color: black;
+}

@@ -12,7 +12,7 @@ import PrivateRoute from "./components/componentRoutes/PrivateRoute";
 import "./App.css";
 
 // * Components
-import Navbar from "./components/fixedComponents/Navbar";
+import Navbar from "./components/fixedComponents/navbar/Navbar";
 
 // * Pages
 import Home from "./pages/Home";
