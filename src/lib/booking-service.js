@@ -42,10 +42,10 @@ class Booking {
     }
   };
 
-  editBooking = async ({ id, name }) => {
+  editBooking = async ({ id, name, participants }) => {
     try {
-      const res = await this.booking.post(`/booking/${id}`, { name });
-      console.log(id, "again, the id should be this!!!");
+      const res = await this.booking.post(`/booking/${id}`, { name, participants });
+      console.log(participants, "again, the participants should be this!!!");
       return res.data;
     } catch (error) {
       console.log(error);
