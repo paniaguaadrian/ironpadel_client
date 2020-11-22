@@ -53,7 +53,7 @@ class Profile extends Component {
       <div>
       {this.state.user !== undefined && this.props.user._id == this.state.user._id ?
       (<div>
-      <img src='/default-profile.jpg' alt="" style= {{width: 100}}/>
+        <img src={this.state.user.image} alt="" style= {{width: 100}}/>
         <form onSubmit={this.handleFormSubmit}>
           <label>Name:</label>
           <input
@@ -85,7 +85,7 @@ class Profile extends Component {
            <input type="submit" value="Edit" />
           </form>
         </div>) : (<div>
-          <img src='/default-profile.jpg' alt="" style= {{width: 100}}/>
+          <img src={this.state.user.image} alt="" style= {{width: 100}}/>
         <h1>Name: {this.state.user.username}</h1>
         <h3>Email: {this.state.user.email}</h3>
         <p>Description: {this.state.user.description}</p>
