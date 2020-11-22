@@ -45,7 +45,6 @@ class Booking {
   editBooking = async ({ id, name, participants }) => {
     try {
       const res = await this.booking.post(`/booking/${id}`, { name, participants });
-      console.log(participants, "again, the participants should be this!!!");
       return res.data;
     } catch (error) {
       console.log(error);
@@ -66,9 +65,20 @@ class Booking {
 
   deleteBooking = async (id) => {
     try {
-      console.log(id, 'is this the id???')
+     
       
       const res = await this.booking.post(`/booking/${id}/deleteBooking`);
+      return res.data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  deletePlayer = async ({playerId, bookingId}) => {
+    try {
+      console.log(playerId, 'is this the player id???')
+      console.log(bookingId, 'is this the booking id???')
+      const res = await this.booking.post(`/booking/${bookingId}/${playerId}`);
       return res.data;
     } catch (error) {
       console.log(error);

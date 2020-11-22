@@ -111,6 +111,7 @@ class Booking extends Component {
           </select>
           <label>Time:</label>
           <select onChange={(e) => this.getHour(e)}>
+              <option>-</option>
             {this.state.date.available
               ? this.state.date.available.map(function (hour) {
                   return (

@@ -24,7 +24,6 @@ class Booking extends Component {
     const { params } = this.props.match;
     // const dates = await this.props.getDates();
     const theBooking = await bookingservice.getBooking(params.id);
-    console.log(theBooking, "this is the booking!!!!");
     this.setState({
       booking: theBooking,
       id: params.id,
@@ -45,7 +44,6 @@ class Booking extends Component {
 
   handleChange = (e) => {
     const { name, value } = e.target;
-    console.log(name)
     this.setState({ [name]: value });
   };
 
@@ -53,9 +51,6 @@ class Booking extends Component {
     try {
       event.preventDefault();
       const { name, participants, player2, player3, player4, id } = this.state;
-      console.log(player2, 'this is player 2')
-      console.log(player3, 'this is player 3')
-      console.log(player4, 'this is player 4')
     if(player2 !== ''){
       participants.push(player2)
     }
@@ -95,12 +90,13 @@ class Booking extends Component {
     });
   };
 
+  
+
 
   render() {
-    const { name, month } = this.state;
+    const { name, id } = this.state;
     const {user} = this.props
-    console.log(this.state.participants, 'this is the booking')
-    console.log(this.props.user.username, 'these are the number of participants')
+    const props = this.props
     return (
       <div>
       {this.state.participants.length !== 0 && this.props.user._id == this.state.participants[0]._id ? 
@@ -123,7 +119,7 @@ class Booking extends Component {
   </div> : null}
   
   {this.state.participants !== 0 ? this.state.participants.map(function (player, index){
-   return <div><h3>Player {index + 1}: {player.username}</h3><button>Delete</button></div> 
+   return <div><h3>Player {index + 1}: {player.username}</h3><button onClick={props.deleteParticipant(player._id, id)}>Delete</button></div> 
 
   }) : null }
   {this.state.participants.length === 1 ? 
@@ -169,7 +165,7 @@ class Booking extends Component {
       
       
   {this.state.participants !== 0 ? this.state.participants.map(function (player, index){
-   return <div key={index}>{user.username == player.username ? <div><h3>Player {index + 1}: {player.username}</h3><button>Delete</button></div> : 
+   return <div key={index}>{user.username == player.username ? <div><h3>Player {index + 1}: {player.username}</h3><button onClick={() =>props.deleteParticipant(player._id, id)}>Delete</button></div> : 
    <h3>Player {index + 1}: {player.username}</h3>}</div>
 
   }) : null }
