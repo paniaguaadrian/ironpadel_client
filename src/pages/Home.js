@@ -3,6 +3,12 @@ import { Link } from "react-router-dom";
 import { withAuth } from "../lib/AuthProvider";
 import bookingservice from "../lib/booking-service";
 
+// Components
+import CTANewUsers from "../components/ctaNewUsers/CTANewUsers";
+import CTABooking from "../components/ctaBooking/CTABooking";
+
+import "./Home.css";
+
 class Home extends Component {
   state = {
     user: {},
@@ -28,9 +34,10 @@ class Home extends Component {
 
   render() {
     return (
-      <>
+      <div className="Home_Section">
         {this.props.isLoggedin ? (
           <div>
+            <CTABooking />
             <h1>{this.props.user.username}</h1>
             {this.state.bookings && this.state.bookings.length !== 0
               ? this.state.bookings.map(function (booking, index) {
@@ -73,9 +80,12 @@ class Home extends Component {
             <Link to={`/community`}> Enter to the community </Link>
           </div>
         ) : (
-          <div>This is home without log in</div>
+          <div className="Home_Section">
+            <CTANewUsers />
+            <CTABooking />
+          </div>
         )}
-      </>
+      </div>
     );
   }
 }

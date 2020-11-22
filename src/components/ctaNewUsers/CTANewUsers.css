@@ -1,0 +1,95 @@
+/* Container */
+.CTANewUsers_container {
+  height: 100%;
+  padding: 0rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+}
+
+/* CTA Title */
+.CTANewUsers_title {
+  text-decoration: none;
+}
+
+.CTANewUsers_title h1 {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  text-decoration: none;
+  color: black;
+}
+
+.CTANewUsers_title span {
+  font-size: 1.7rem;
+  margin-bottom: 2rem;
+  text-decoration: none;
+  color: #48c26c;
+}
+
+.CTANewUsers_title h1:hover {
+  text-decoration: underline;
+}
+
+/* CTA Subtitle */
+.CTANewUsers_subTitle {
+  font-size: 0.8rem;
+  color: black;
+  margin-bottom: 3.5rem;
+}
+
+.CTANewUsers_subTitle span {
+  font-size: 1.2rem;
+  color: #48c26c;
+}
+
+.CTANewUsers_subTitle span:hover {
+  font-size: 1.2rem;
+  color: #48c26c;
+  text-decoration: underline;
+}
+
+.CTANewUsers_subTitle p {
+  font-size: 1rem;
+  color: black;
+}
+
+/* Image */
+.CTANewUsers_image img {
+  width: 18rem;
+  margin-bottom: 2.5rem;
+  margin-top: 1rem;
+  border: 3px solid #0f3170;
+  -webkit-box-shadow: 5px 5px 15px 1px #000000;
+  box-shadow: 5px 5px 15px 1px #000000;
+}
+
+/* Button link */
+.CTANewUsers_link {
+  border: 2px solid #305fb4;
+  border-radius: 10px;
+  padding: 1rem 1.5rem;
+  text-decoration: none;
+  color: white;
+  background-color: #06348a;
+}
+
+.CTANewUsers_link:hover {
+  border: 2px solid white;
+  font-size: 1.05rem;
+  border-radius: 10px;
+  padding: 1.1rem 1.6rem;
+  text-decoration: none;
+  color: white;
+  background-color: #06348a;
+  transition: all 0.2s ease-out;
+}
+
+/* Divider */
+
+.divider {
+  margin-top: 6rem;
+  height: 2px;
+  background-color: #06348a;
+  border: none;
+}
