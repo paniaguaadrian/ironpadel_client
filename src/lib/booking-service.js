@@ -78,7 +78,7 @@ class Booking {
     try {
       console.log(playerId, 'is this the player id???')
       console.log(bookingId, 'is this the booking id???')
-      const res = await this.booking.post(`/booking/${bookingId}/${playerId}`);
+      const res = await this.booking.post(`/booking/deletePlayer/${bookingId}/${playerId}`);
       return res.data;
     } catch (error) {
       console.log(error);

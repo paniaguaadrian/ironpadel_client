@@ -7,6 +7,7 @@ class Home extends Component {
   state = {
     user: {},
     bookings: [],
+    notifications: []
   };
 
   componentDidMount = async () => {
@@ -17,6 +18,7 @@ class Home extends Component {
       user: theUser.data,
       // !
       bookings: theBookings,
+      notifications: theUser.data.notifications
     });
   };
 
@@ -49,6 +51,12 @@ class Home extends Component {
                   );
                 })
               : null}
+                <div>
+              <h1>My notifications</h1>
+              {this.state.notifications.length !== 0 ? this.state.notifications.map(function(notification){
+                return <p>{notification.message}</p>
+              }) : null}
+              </div>
             <Link to={`/profile/${this.props.user._id}`}>
               {" "}
               Go to my profile{" "}
