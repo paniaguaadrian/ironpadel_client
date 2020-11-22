@@ -42,6 +42,7 @@ class Community extends Component {
                           })
                         : null}
                     </div>
+                    <Link to={`/booking/${booking._id}`}>Get details</Link>
                   </div>
                 );
               })

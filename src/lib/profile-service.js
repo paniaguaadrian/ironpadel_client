@@ -1,9 +1,10 @@
 import axios from "axios";
 
+
 class Profile {
   constructor() {
     this.profile = axios.create({
-      baseURL: "http://localhost:4000",
+      baseURL: process.env.REACT_APP_API_URI,
       withCredentials: true,
     });
   }
@@ -27,9 +28,10 @@ class Profile {
     } 
   }
 
-  editProfile = async (theUser) => {
+  editProfile = async ({username, email, description, id}) => {
     try {
-        const res = await this.profile.post("/profile/:id", theUser)
+        const res = await this.profile.post(`/profile/${id}`, {username, email, description})
+        console.log(username, 'this is the users name service')
         return res.data
     } catch (error) {
         console.log(error)

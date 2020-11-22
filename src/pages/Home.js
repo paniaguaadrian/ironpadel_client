@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { withAuth } from "../lib/AuthProvider";
+import bookingservice from "../lib/booking-service";
 
 class Home extends Component {
   state = {
     user: {},
     bookings: [],
+    notifications: [],
   };
 
   componentDidMount = async () => {
@@ -16,7 +18,12 @@ class Home extends Component {
       user: theUser.data,
       // !
       bookings: theBookings,
+      notifications: theUser.data.notifications,
     });
+  };
+
+  deleteTheBooking = async (id) => {
+    await bookingservice.deleteBooking(id);
   };
 
   render() {
@@ -24,9 +31,8 @@ class Home extends Component {
       <>
         {this.props.isLoggedin ? (
           <div>
-            <h1>Welcome back {this.props.user.username}</h1>
-            <h4>Let's start by booking a game!</h4>
-            {this.state.bookings
+            <h1>{this.props.user.username}</h1>
+            {this.state.bookings && this.state.bookings.length !== 0
               ? this.state.bookings.map(function (booking, index) {
                   return (
                     <div key={index}>
@@ -37,7 +43,13 @@ class Home extends Component {
                       <p>Hour: {booking.hour}</p>
                       {booking.players
                         ? booking.players.map((player, index) => {
-                            return <p key={index}>{player.username}</p>;
+                            return (
+                              <p key={index}>
+                                <Link to={`/profile/${player._id}`}>
+                                  {player.username}
+                                </Link>
+                              </p>
+                            );
                           })
                         : null}
                       <Link to={`/booking/${booking._id}`}>Edit booking</Link>
@@ -45,6 +57,14 @@ class Home extends Component {
                   );
                 })
               : null}
+            <div>
+              <h1>My notifications</h1>
+              {this.state.notifications.length !== 0
+                ? this.state.notifications.map(function (notification) {
+                    return <p>{notification.message}</p>;
+                  })
+                : null}
+            </div>
             <Link to={`/profile/${this.props.user._id}`}>
               {" "}
               Go to my profile{" "}

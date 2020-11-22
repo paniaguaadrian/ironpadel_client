@@ -3,7 +3,7 @@ import axios from "axios";
 class Booking {
   constructor() {
     this.booking = axios.create({
-      baseURL: "http://localhost:4000",
+      baseURL: process.env.REACT_APP_API_URI,
       withCredentials: true,
     });
   }
@@ -42,10 +42,9 @@ class Booking {
     }
   };
 
-  editBooking = async ({ id, name }) => {
+  editBooking = async ({ id, name, participants }) => {
     try {
-      const res = await this.booking.post(`/booking/${id}`, { name });
-      console.log(id, "again, the id should be this!!!");
+      const res = await this.booking.post(`/booking/${id}`, { name, participants });
       return res.data;
     } catch (error) {
       console.log(error);
@@ -63,6 +62,29 @@ class Booking {
   };
 
   // ! WE NEED TO ADD DELETE
+
+  deleteBooking = async (id) => {
+    try {
+     
+      
+      const res = await this.booking.post(`/booking/${id}/deleteBooking`);
+      return res.data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  deletePlayer = async ({playerId, bookingId}) => {
+    try {
+      console.log(playerId, 'is this the player id???')
+      console.log(bookingId, 'is this the booking id???')
+      const res = await this.booking.post(`/booking/deletePlayer/${bookingId}/${playerId}`);
+      return res.data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
 }
 
 const axiosRequestFunctions = new Booking();
