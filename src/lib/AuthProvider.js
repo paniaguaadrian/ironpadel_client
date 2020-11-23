@@ -35,7 +35,8 @@ const withAuth = (WrappedComponent) => {
             getUserGames,
             editBooking,
             getBooking,
-            deleteParticipant
+            deleteParticipant,
+            addParticipant
           }) => {
             return (
               <WrappedComponent
@@ -53,6 +54,7 @@ const withAuth = (WrappedComponent) => {
                 editBooking={editBooking}
                 getBooking={getBooking}
                 deleteParticipant={deleteParticipant}
+                addParticipant={addParticipant}
                 {...this.props}
               />
             );
@@ -156,6 +158,11 @@ class AuthProvider extends React.Component {
     return theBookings;
   };
 
+  addParticipant = async (userID, bookingID) => {
+    
+    return await booking.addPlayer(userID, bookingID);
+   }
+
   deleteParticipant = async (playerId, bookingId) => {
     
    return await booking.deletePlayer({playerId, bookingId });
@@ -175,7 +182,8 @@ class AuthProvider extends React.Component {
       getUserGames,
       editBooking,
       getBooking,
-      deleteParticipant
+      deleteParticipant,
+      addParticipant
     } = this;
 
     return isLoading ? (
@@ -196,7 +204,8 @@ class AuthProvider extends React.Component {
           getUserGames,
           editBooking,
           getBooking,
-          deleteParticipant
+          deleteParticipant,
+          addParticipant
         }}
       >
         {this.props.children}

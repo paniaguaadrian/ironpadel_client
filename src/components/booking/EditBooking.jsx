@@ -38,10 +38,6 @@ class Booking extends Component {
     })
   };
 
-  // deleteTheBooking = async(id) => {
-  //   await bookingservice.deleteBooking(id)
-  // }
-
   handleChange = (e) => {
     const { name, value } = e.target;
     this.setState({ [name]: value });
@@ -119,7 +115,7 @@ class Booking extends Component {
   </div> : null}
   
   {this.state.participants !== 0 ? this.state.participants.map(function (player, index){
-   return <div><h3>Player {index + 1}: {player.username}</h3><button onClick={props.deleteParticipant(player._id, id)}>Delete</button></div> 
+   return <div><h3>Player {index + 1}: {player.username}</h3><button onClick={() => bookingservice.deletePlayer(player._id, id)}>Delete this player</button></div> 
 
   }) : null }
   {this.state.participants.length === 1 ? 
@@ -152,7 +148,7 @@ class Booking extends Component {
 
   <input type="submit" value="Edit" />
 </form>
-      
+      <button onClick={() =>  bookingservice.deleteBooking(id)}>Delete this game</button>
       </div> : 
       
       <div>
@@ -165,41 +161,33 @@ class Booking extends Component {
       
       
   {this.state.participants !== 0 ? this.state.participants.map(function (player, index){
-   return <div key={index}>{user.username == player.username ? <div><h3>Player {index + 1}: {player.username}</h3><button onClick={() =>props.deleteParticipant(player._id, id)}>Delete</button></div> : 
+   return <div key={index}>{user.username == player.username ? <div><h3>Player {index + 1}: {player.username}</h3><button onClick={() =>bookingservice.deletePlayer(player._id, id)}>Delete</button></div> : 
    <h3>Player {index + 1}: {player.username}</h3>}</div>
 
   }) : null }
-  <form onSubmit={this.handleFormSubmit}>
+  
       {this.state.participants.length === 1 ? 
         <div>
-        <label>Join this game: </label>
-        <input type="text" name={`player${this.state.participants.length+1}`}  onChange={this.handleChange}/>
-      
-        <label>Join this game: </label>
-        <input type="text" name={`player${this.state.participants.length+2}`}  onChange={this.handleChange}/>
+          <button onClick={() => bookingservice.addPlayer(user._id, id)} >Join this game</button>
 
-        <label>Join this game: </label>
-        <input type="text" name={`player${this.state.participants.length+3}`}  onChange={this.handleChange}/>
+          <button onClick={() =>  bookingservice.addPlayer(user._id, id)} >Join this game</button>
+
+          <button onClick={() => bookingservice.addPlayer(user._id, id)} >Join this game</button>
         </div>
         : null}
       {this.state.participants.length === 2 ? 
         <div>
-        <label>Join this game: </label>
-        <input type="text" name={`player${this.state.participants.length+1}`}  onChange={this.handleChange}/>
-      
-        <label>Join this game: </label>
-        <input type="text" name={`player${this.state.participants.length+2}`}  onChange={this.handleChange}/>
+          <button onClick={() =>  bookingservice.addPlayer(user._id, id)} >Join this game</button>
+          <button onClick={() =>  bookingservice.addPlayer(user._id, id)} >Join this game</button>
         </div>
         : null}
         {this.state.participants.length === 3 ? 
         <div>
-        <label>Join this game: </label>
-        <input type="text" name={`player${this.state.participants.length+1}`}  onChange={this.handleChange}/>
+          <button onClick={() =>  bookingservice.addPlayer(user._id, id)} >Join this game</button>
         </div>
+          
         : null}
 
-        <input type="submit" value="Join" />
-</form>
     </div>
           }
             

@@ -61,6 +61,13 @@ class Booking {
     }
   };
 
+  addPlayer = async (userID, bookingID) => {
+    console.log(userID, 'this is the user ID service')
+    console.log(bookingID, 'this is the booking ID service')
+    const res = await this.booking.post(`/booking/addPlayer/${bookingID}/${userID}`)
+    return res.data
+  }
+
   // ! WE NEED TO ADD DELETE
 
   deleteBooking = async (id) => {
@@ -74,7 +81,7 @@ class Booking {
     }
   };
 
-  deletePlayer = async ({playerId, bookingId}) => {
+  deletePlayer = async (playerId, bookingId) => {
     try {
       console.log(playerId, 'is this the player id???')
       console.log(bookingId, 'is this the booking id???')
