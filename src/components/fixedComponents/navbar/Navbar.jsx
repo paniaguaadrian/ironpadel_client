@@ -22,7 +22,7 @@ class Navbar extends Component {
     return (
       <nav className="NavbarItems">
         <Link to={"/"}>
-          <img src="/ironpadel_verde.png" className="ironPadel_logo" alt="" />
+          <img src="/ironpadel_blanco.png" className="ironPadel_logo" alt="" />
         </Link>
         <div className="menu-icon" onClick={this.handleClick}>
           <i
@@ -95,31 +95,3 @@ class Navbar extends Component {
 }
 
 export default withAuth(Navbar);
-
-// const { user, logout, isLoggedin } = this.props;
-//     return (
-//       <nav className="NavbarItems">
-//         <Link to={"/"} id="home-btn">
-//           <h4>Home</h4>
-//         </Link>
-//         {isLoggedin ? (
-//           <>
-//             <p className="navbar-user">username: {user.username}</p>
-//             <button className="navbar-button" onClick={logout}>
-//               Logout
-//             </button>
-//           </>
-//         ) : (
-//           <>
-//             <Link to="/login">
-//               <button className="navbar-button">Login</button>
-//             </Link>
-//             <br />
-//             <Link to="/signup">
-//               <button className="navbar-button">Sign Up</button>
-//             </Link>
-//           </>
-//         )}
-//       </nav>
-//     );
-//   }

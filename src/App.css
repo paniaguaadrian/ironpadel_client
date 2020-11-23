@@ -1,6 +1,11 @@
 /* Colors: */
-/* blue:  #06348a
+/* blue:  #06348a // #007ea7
+OSCURO: #003459 
 green: #48c26c */
+
+/* Fonts */
+/* Titles: font-family: 'Fira Sans', sans-serif; */
+/* Text: font-family: 'Source Sans Pro', sans-serif; */
 
 * {
   box-sizing: border-box;
@@ -10,6 +15,8 @@ green: #48c26c */
 
 html,
 body {
+  background-color: #007ea7;
+  /* background: linear-gradient(180deg, #06348a 20%, #48c26c 100%); */
   font-size: 16px;
 }
 
@@ -23,4 +30,10 @@ ul {
 
 a {
   text-decoration: none;
+}
+
+.container {
+  /* background-color: #48c26c; */
+  width: 100%;
+  max-height: 100%;
 }

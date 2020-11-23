@@ -3,6 +3,13 @@ import { Link } from "react-router-dom";
 import { withAuth } from "../lib/AuthProvider";
 import bookingservice from "../lib/booking-service";
 
+// Components
+import CTANewUsers from "../components/ctaNewUsers/CTANewUsers";
+import CTABooking from "../components/ctaBooking/CTABooking";
+import CTACommunity from "../components/CTACommunity/CTACommunity";
+
+import "./Home.css";
+
 class Home extends Component {
   state = {
     user: {},
@@ -28,54 +35,97 @@ class Home extends Component {
 
   render() {
     return (
-      <>
+      <div className="Home_Section">
         {this.props.isLoggedin ? (
           <div>
-            <h1>{this.props.user.username}</h1>
-            {this.state.bookings && this.state.bookings.length !== 0
-              ? this.state.bookings.map(function (booking, index) {
-                  return (
-                    <div key={index}>
-                      <h3>{booking.name}</h3>
-                      <p>
-                        Date: {booking.date.day} {booking.date.month}
-                      </p>
-                      <p>Hour: {booking.hour}</p>
-                      {booking.players
-                        ? booking.players.map((player, index) => {
-                            return (
-                              <p key={index}>
-                                <Link to={`/profile/${player._id}`}>
-                                  {player.username}
-                                </Link>
-                              </p>
-                            );
-                          })
-                        : null}
-                      <Link to={`/booking/${booking._id}`}>Edit booking</Link>
-                    </div>
-                  );
-                })
-              : null}
-            <div>
-              <h1>My notifications</h1>
-              {this.state.notifications.length !== 0
-                ? this.state.notifications.map(function (notification) {
-                    return <p>{notification.message}</p>;
+            <h1 className="Welcome_title">
+              <i class="fas fa-baseball-ball App-logo"></i> Welcome{" "}
+              {this.state.user.username}!
+            </h1>
+
+            <div className="Bookings_container">
+              <h1>Next Matches</h1>
+              {this.state.bookings && this.state.bookings.length !== 0
+                ? this.state.bookings.map(function (booking, index) {
+                    return (
+                      <div className="Booking_user_container" key={index}>
+                        <div className="Booking_general_info">
+                          <h3>{booking.name}</h3>
+                          <p>
+                            {booking.date.day} {booking.date.month}{" "}
+                            {booking.hour}
+                          </p>
+                        </div>
+                        <div className="Booking_players">
+                          {booking.players
+                            ? booking.players.map((player, index) => {
+                                return (
+                                  <div>
+                                    <img
+                                      src={player.image}
+                                      style={{ width: 25 }}
+                                      alt=""
+                                    />
+                                    <p key={index}>
+                                      <Link
+                                        className="players_participants"
+                                        to={`/profile/${player._id}`}
+                                      >
+                                        {player.username}
+                                      </Link>
+                                    </p>
+                                  </div>
+                                );
+                              })
+                            : null}
+                        </div>
+                        <div className="button_container">
+                          <Link
+                            className="editBooking_link"
+                            to={`/booking/${booking._id}`}
+                          >
+                            View match
+                          </Link>
+                        </div>
+                      </div>
+                    );
                   })
                 : null}
             </div>
-            <Link to={`/profile/${this.props.user._id}`}>
+
+            <div>
+              <div className="Notifications_container">
+                <h1>Notifications</h1>
+                {this.state.notifications.length !== 0
+                  ? this.state.notifications.map(function (notification) {
+                      return (
+                        <div className="Notification_container">
+                          <p>{notification.message}</p>
+                          {/* Prepare to delete notification */}
+                          <i class="fas fa-times "></i>
+                        </div>
+                      );
+                    })
+                  : null}
+              </div>
+            </div>
+            <CTABooking />
+            <CTACommunity />
+            {/* <Link to={`/profile/${this.props.user._id}`}>
               {" "}
               Go to my profile{" "}
             </Link>
             <Link to={`/booking`}> Book a match </Link>
-            <Link to={`/community`}> Enter to the community </Link>
+            <Link to={`/community`}> Enter to the community </Link> */}
           </div>
         ) : (
-          <div>This is home without log in</div>
+          <div className="Home_Section">
+            <CTANewUsers />
+            <CTABooking />
+            <CTACommunity />
+          </div>
         )}
-      </>
+      </div>
     );
   }
 }
