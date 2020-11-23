@@ -1,0 +1,49 @@
+.form_part_date {
+  margin: 2rem 0rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.form_part_date label {
+  font-size: 1rem;
+}
+
+.form_part_date select {
+  width: 80%;
+  height: 2rem;
+  border: none;
+  border-bottom: 2px solid #003459;
+}
+
+.form_part_date option {
+  width: 80%;
+  height: 20rem;
+  border: none;
+  border-bottom: 2px solid #003459;
+}
+
+.form_part_players {
+  margin: 3rem 0rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.form_part_players_container h2 {
+  margin-bottom: 2rem;
+  margin-top: 4rem;
+}
+
+/* Edit booking */
+
+.delete-me {
+  color: black;
+}
+
+.delete-btn {
+  border: none;
+  background-color: transparent;
+}
