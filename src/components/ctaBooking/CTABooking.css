@@ -1,37 +1,49 @@
 /* Container */
 .CTABooking_container {
-  height: 20rem;
-  padding: 0rem 2.5rem;
+  height: 30rem;
+  width: 90%;
   display: flex;
   flex-direction: column;
   text-align: center;
   justify-content: center;
-  /* margin-bottom: 5rem; */
+  border: 0px solid #06348a;
+  -webkit-box-shadow: 5px 4px 12px -3px #003459;
+  box-shadow: 5px 4px 12px -3px #003459;
+  margin: 3rem auto;
+  background-color: white;
 }
 
 /* CTA Title */
+
+.CTABooking_title {
+  text-decoration: none;
+  font-family: "Fira Sans", sans-serif;
+  font-weight: 400;
+}
+
 .CTABooking_title h1 {
   font-size: 1.5rem;
-  margin-bottom: 1rem;
   text-decoration: none;
   color: black;
 }
 
 .CTABooking_title h3 {
-  font-size: 1.5rem;
+  font-size: 1rem;
   margin-bottom: 3rem;
   color: black;
+  font-family: "Source Sans Pro", sans-serif;
 }
 
 .CTABooking_title span {
   font-size: 1.5rem;
   text-decoration: none;
-  color: #1fcc53;
+  color: #007ea7;
+  font-family: "Source Sans Pro", sans-serif;
 }
 
 .CTABooking_title span:hover {
   font-size: 1.5rem;
   margin-bottom: 4rem;
   text-decoration: underline;
-  color: #86da9f;
+  color: #007ea7;
 }

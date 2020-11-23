@@ -25,7 +25,7 @@ class CTANewUsers extends Component {
               <span>PRESTIGE YOU DESERVE</span>
             </Link>
           </h3>
-          <p>(Check our Community)</p>
+          <p>(Check your position at Rankings!)</p>
         </div>
 
         <div className="CTANewUsers_link_container">
@@ -33,7 +33,7 @@ class CTANewUsers extends Component {
             ¡SIGN UP NOW!
           </Link>
         </div>
-        <hr className="divider" />
+        {/* <hr className="divider" /> */}
       </div>
     );
   }

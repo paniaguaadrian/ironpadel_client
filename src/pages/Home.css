@@ -1,3 +1,127 @@
-.Home_Section {
-  width: 100%;
+.Welcome_title {
+  margin-top: 2rem;
+  margin-bottom: 3rem;
+  text-align: center;
+  font-family: "Fira Sans", sans-serif;
+  color: white;
+}
+
+/* Bookings section */
+.Bookings_container h1 {
+  margin-top: 4rem;
+  margin-left: 2rem;
+  font-family: "Fira Sans", sans-serif;
+  color: white;
+  font-size: 1.4rem;
+}
+
+.Booking_user_container {
+  height: 14rem;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  border: 0px solid #06348a;
+  border-radius: 14px;
+  -webkit-box-shadow: 5px 4px 12px -3px #003459;
+  box-shadow: 5px 4px 12px -3px #003459;
+  margin: 2rem auto;
+  background-color: white;
+}
+
+.Booking_general_info {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  font-family: "Source Sans Pro", sans-serif;
+}
+
+.Booking_general_info h3 {
+  font-family: "Fira Sans", sans-serif;
+  font-size: 1.5rem;
+  color: #007ea7;
+  margin-bottom: 1rem;
+}
+
+.Booking_general_info p {
+  font-weight: 700;
+}
+
+.Booking_players {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-top: 1rem;
+  font-family: "Source Sans Pro", sans-serif;
+  text-decoration: underline;
+  color: black;
+}
+
+.players_participants {
+  font-family: "Source Sans Pro", sans-serif;
+  text-decoration: none;
+  color: black;
+}
+
+.button_container {
+  margin-top: 2rem;
+}
+
+.editBooking_link {
+  border: none;
+  /* border: 2px solid #305fb4; */
+  border-radius: 10px;
+  text-decoration: none;
+  color: white;
+  padding: 0.6rem 2.5rem;
+  background-color: #004272;
+
+  font-family: "Fira Sans", sans-serif;
+  font-weight: 500;
+  font-size: 0.8rem !important;
+}
+
+/* Notifications section */
+.Notifications_container {
+  margin-top: 4rem;
+  font-family: "Fira Sans", sans-serif;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+}
+
+.Notifications_container h1 {
+  font-family: "Fira Sans", sans-serif;
+  color: white;
+  font-size: 1.4rem;
+  margin-left: 2rem;
+}
+
+.Notification_container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  text-align: left;
+  border: 0px solid #003459;
+  border-radius: 14px;
+  margin: 1.5rem 2rem;
+  padding: 0.8rem 1.5rem;
+  color: black;
+  background-color: white;
+  -webkit-box-shadow: 5px 4px 12px -3px #003459;
+  box-shadow: 5px 4px 12px -3px #003459;
+}
+
+.Notification_container i {
+  color: #003459;
+  font-size: 1.5rem;
+}
+.Notification_container p {
+  text-align: center;
 }

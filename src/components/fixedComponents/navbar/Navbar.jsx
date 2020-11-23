@@ -22,7 +22,7 @@ class Navbar extends Component {
     return (
       <nav className="NavbarItems">
         <Link to={"/"}>
-          <img src="/ironpadel_verde.png" className="ironPadel_logo" alt="" />
+          <img src="/ironpadel_blanco.png" className="ironPadel_logo" alt="" />
         </Link>
         <div className="menu-icon" onClick={this.handleClick}>
           <i
