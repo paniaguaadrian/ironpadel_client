@@ -122,7 +122,7 @@ class Booking extends Component {
    return <div><h3>Player {index + 1}: {player.username}</h3><button onClick={props.deleteParticipant(player._id, id)}>Delete</button></div> 
 
   }) : null }
-  {this.state.participants.length === 1 ? 
+  {/* {this.state.participants.length === 1 ? 
      <div>
     <label>Add another player: </label>
     <input type="text" name={`player${this.state.participants.length+1}`}  onChange={this.handleChange}/>
@@ -148,7 +148,7 @@ class Booking extends Component {
     <label>Add another player: </label>
     <input type="text" name={`player${this.state.participants.length+1}`}/>
     </div>
-    : null}
+    : null} */}
 
   <input type="submit" value="Edit" />
 </form>
