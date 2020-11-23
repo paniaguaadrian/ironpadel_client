@@ -4,14 +4,17 @@ import { Link } from "react-router-dom";
 // Auth
 import { withAuth } from "../lib/AuthProvider";
 
+// Css
+import "./auth.css";
+
 class Signup extends Component {
   state = { username: "", password: "" };
 
   handleFormSubmit = (event) => {
     event.preventDefault();
-    const { username, password } = this.state;
+    const { username, password, email } = this.state;
 
-    this.props.signup({ username, password });
+    this.props.signup({ username, password, email });
   };
 
   handleChange = (event) => {
@@ -20,33 +23,54 @@ class Signup extends Component {
   };
 
   render() {
-    const { username, password } = this.state;
+    const { username, password, email } = this.state;
     return (
-      <div>
+      <div className="auth_container">
         <h1>Sign Up</h1>
-
-        <form onSubmit={this.handleFormSubmit}>
-          <label>Username:</label>
-          <input
-            type="text"
-            name="username"
-            value={username}
-            onChange={this.handleChange}
-          />
-
-          <label>Password:</label>
-          <input
-            type="password"
-            name="password"
-            value={password}
-            onChange={this.handleChange}
-          />
-
-          <input type="submit" value="Signup" />
-        </form>
-
-        <p>Already have account?</p>
-        <Link to={"/login"}> Login</Link>
+        <div className="form_container">
+          <form onSubmit={this.handleFormSubmit}>
+            <div className="form_part">
+              <label>Username</label>
+              <input
+                type="text"
+                name="username"
+                value={username}
+                placeholder="Rafael Nadal"
+                onChange={this.handleChange}
+              />
+            </div>
+            <div className="form_part">
+              <label>Email</label>
+              <input
+                type="text"
+                name="email"
+                value={email}
+                placeholder="vamosrafa@gmail.com"
+                onChange={this.handleChange}
+              />
+            </div>
+            <div className="form_part">
+              <label>Password</label>
+              <input
+                type="password"
+                name="password"
+                value={password}
+                placeholder="*************"
+                onChange={this.handleChange}
+              />
+            </div>
+            <div className="form_button_container">
+              <input className="form_button_btn" type="submit" value="Signup" />
+            </div>
+          </form>
+          <p className="Already_acc">
+            Already have account?{" "}
+            <Link className="Already_acc_link" to={"/login"}>
+              {" "}
+              Login
+            </Link>
+          </p>
+        </div>
       </div>
     );
   }
