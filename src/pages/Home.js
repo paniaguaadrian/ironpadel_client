@@ -39,7 +39,7 @@ class Home extends Component {
         {this.props.isLoggedin ? (
           <div>
             <h1 className="Welcome_title">
-              <i class="fas fa-baseball-ball"></i> Welcome{" "}
+              <i class="fas fa-baseball-ball App-logo"></i> Welcome{" "}
               {this.state.user.username}!
             </h1>
 
@@ -84,7 +84,7 @@ class Home extends Component {
                             className="editBooking_link"
                             to={`/booking/${booking._id}`}
                           >
-                            Edit match
+                            View match
                           </Link>
                         </div>
                       </div>
@@ -102,7 +102,7 @@ class Home extends Component {
                         <div className="Notification_container">
                           <p>{notification.message}</p>
                           {/* Prepare to delete notification */}
-                          <i class="fas fa-times"></i>
+                          <i class="fas fa-times "></i>
                         </div>
                       );
                     })
