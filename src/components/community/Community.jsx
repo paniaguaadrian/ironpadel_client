@@ -29,7 +29,7 @@ class Community extends Component {
     return (
       <div className="community_container">
         <h1>Welcome to the Community</h1>
-        <div>
+        <div className="wrapp_matches_container">
           {bookings
             ? bookings.map((booking, index) => {
                 return (

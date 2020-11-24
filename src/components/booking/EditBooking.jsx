@@ -93,32 +93,41 @@ class Booking extends Component {
   };
 
   addPlayer = (player, booking) => {
-    bookingservice.addPlayer(player, booking)
+    bookingservice.addPlayer(player, booking);
     this.setState({
-      wasAdded: true
-    })
-  }
+      wasAdded: true,
+    });
+    setTimeout(() => {
+      this.props.history.push("/");
+    }, 3000);
+  };
 
-  deletePlayer  = (player, booking) => {
-    bookingservice.deletePlayer(player, booking)
+  deletePlayer = (player, booking) => {
+    bookingservice.deletePlayer(player, booking);
     this.setState({
-      wasDeleted: true
-    })
-  }
+      wasDeleted: true,
+    });
+    setTimeout(() => {
+      this.props.history.push("/");
+    }, 3000);
+  };
 
-  deleteGame  = (booking) => {
-    bookingservice.deleteBooking(booking)
+  deleteGame = (booking) => {
+    bookingservice.deleteBooking(booking);
     this.setState({
-      gameDeleted: true
-    })
-  }
-///////////////////////////////////////////////////////////////////////////////////////
+      gameDeleted: true,
+    });
+    setTimeout(() => {
+      this.props.history.push("/");
+    }, 3000);
+  };
+  ///////////////////////////////////////////////////////////////////////////////////////
   render() {
     const { name, id, wasDeleted, gameDeleted, wasAdded } = this.state;
-    const {user} = this.props
-    const removePlayer = this.deletePlayer
-    const removeGame = this.deleteGame
-    const joinThisGame = this.addPlayer
+    const { user } = this.props;
+    const removePlayer = this.deletePlayer;
+    const removeGame = this.deleteGame;
+    const joinThisGame = this.addPlayer;
     return (
       <div>
         {this.state.participants.length !== 0 &&
@@ -146,7 +155,7 @@ class Booking extends Component {
                     </h3>
                   </div>
                 ) : null}
-  
+
                 {this.state.participants !== 0
                   ? this.state.participants.map(function (player, index) {
                       return (
@@ -154,11 +163,7 @@ class Booking extends Component {
                           <h3>
                             Player {index + 1}: {player.username}
                           </h3>
-                          <button
-                            onClick={() =>
-                              removePlayer(player._id, id)
-                            }
-                          >
+                          <button onClick={() => removePlayer(player._id, id)}>
                             Delete this player
                           </button>
                         </div>
@@ -166,7 +171,7 @@ class Booking extends Component {
                     })
                   : null}
 
-                  <div className="form_button_container_edit">
+                <div className="form_button_container_edit">
                   {wasDeleted ? <p>Player was removed succesfully!</p> : null}
                   <input
                     className="form_button_btn_edit"
@@ -181,12 +186,13 @@ class Booking extends Component {
               >
                 Delete this game
               </button>
-              {gameDeleted ? <p>{this.state.booking.name} was cancelled successfull!</p> : null}
+              {gameDeleted ? (
+                <p>{this.state.booking.name} was cancelled successfully!</p>
+              ) : null}
             </div>
           </div>
-        ): 
-      
-        <div className="auth_container">
+        ) : (
+          <div className="auth_container">
             <h1>Checkout this match</h1>
             <div className="form_container">
               <div className="form_firstPart">
@@ -200,10 +206,10 @@ class Booking extends Component {
                       {this.state.booking.date.month} {this.state.booking.hour}
                     </h3>
                   </div>
-                ) : null}</div>
-      
-      
-                <div className="form_participants">
+                ) : null}
+              </div>
+
+              <div className="form_participants">
                 {this.state.participants !== 0
                   ? this.state.participants.map(function (player, index) {
                       return (
@@ -215,9 +221,7 @@ class Booking extends Component {
                               </h3>
                               <button
                                 className="delete-btn"
-                                onClick={() =>
-                                  deletePlayer(player._id, id)
-                                }
+                                onClick={() => removePlayer(player._id, id)}
                               >
                                 <i class="fas fa-times delete-me"></i>
                               </button>
@@ -236,9 +240,12 @@ class Booking extends Component {
               </div>
               {this.state.participants.length < 4 ? (
                 <div>
+                  {wasAdded ? (
+                    <p>You have been added to this game succesfully!</p>
+                  ) : null}
                   <button
                     className="form_button_btn_edit"
-                    onClick={() =>joinThisGame(user._id, id)}
+                    onClick={() => joinThisGame(user._id, id)}
                   >
                     Join this game
                   </button>
@@ -246,9 +253,9 @@ class Booking extends Component {
               ) : null}
             </div>
           </div>
-        }
-        </div>
-          
         )}
+      </div>
+    );
+  }
 }
 export default withAuth(Booking);

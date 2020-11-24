@@ -17,8 +17,13 @@ class Navbar extends Component {
     this.setState({ clicked: !this.state.clicked });
   };
 
+  logoutMenuClick = () => {
+    this.props.logout();
+    this.handleClick();
+  };
+
   render() {
-    const { user, logout, isLoggedin } = this.props;
+    const { user, isLoggedin } = this.props;
     return (
       <nav className="NavbarItems">
         <Link to={"/"}>
@@ -65,12 +70,8 @@ class Navbar extends Component {
                   Community
                 </Link>
               </li>
-              {/* <p className="navbar-user">username: {user.username}</p> */}
               <li className="navbar-link">
-                <Button onClick={logout}>Log Out</Button>
-                {/* <button className="navbar-button" onClick={logout}>
-                  Logout
-                </button> */}
+                <Button onClick={this.logoutMenuClick}>Log Out</Button>
               </li>
             </ul>
           </>
@@ -95,7 +96,9 @@ class Navbar extends Component {
               </li>
               <li className="navbar-link">
                 <Link to="/login">
-                  <button className="navbar-button">Login</button>
+                  <button onClick={this.handleClick} className="navbar-button">
+                    Login
+                  </button>
                 </Link>
               </li>
             </ul>
