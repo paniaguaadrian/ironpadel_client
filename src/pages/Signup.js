@@ -8,13 +8,13 @@ import { withAuth } from "../lib/AuthProvider";
 import "./auth.css";
 
 class Signup extends Component {
-  state = { username: "", password: "" };
+  state = { username: "", password: "", email: "" };
 
   handleFormSubmit = (event) => {
     event.preventDefault();
-    const { username, password } = this.state;
+    const { username, password, email } = this.state;
 
-    this.props.signup({ username, password });
+    this.props.signup({ username, password, email });
   };
 
   handleChange = (event) => {
@@ -23,7 +23,7 @@ class Signup extends Component {
   };
 
   render() {
-    const { username, password } = this.state;
+    const { username, password, email } = this.state;
     return (
       <div className="auth_container">
         <h1>Sign Up</h1>
@@ -39,7 +39,7 @@ class Signup extends Component {
                 onChange={this.handleChange}
               />
             </div>
-            {/* <div className="form_part">
+            <div className="form_part">
               <label>Email</label>
               <input
                 type="text"
@@ -48,7 +48,7 @@ class Signup extends Component {
                 placeholder="vamosrafa@gmail.com"
                 onChange={this.handleChange}
               />
-            </div> */}
+            </div>
             <div className="form_part">
               <label>Password</label>
               <input

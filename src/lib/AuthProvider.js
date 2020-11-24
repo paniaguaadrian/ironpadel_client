@@ -36,7 +36,7 @@ const withAuth = (WrappedComponent) => {
             editBooking,
             getBooking,
             deleteParticipant,
-            addParticipant
+            addParticipant,
           }) => {
             return (
               <WrappedComponent
@@ -86,10 +86,10 @@ class AuthProvider extends React.Component {
   }
 
   signup = (user) => {
-    const { username, password } = user;
+    const { username, password, email } = user;
 
     auth
-      .signup({ username, password })
+      .signup({ username, password, email })
       .then((user) => this.setState({ isLoggedin: true, user: user }))
       .catch(({ response }) =>
         this.setState({ message: response.data.statusMessage })
@@ -159,14 +159,12 @@ class AuthProvider extends React.Component {
   };
 
   addParticipant = async (userID, bookingID) => {
-    
     return await booking.addPlayer(userID, bookingID);
-   }
+  };
 
   deleteParticipant = async (playerId, bookingId) => {
-    
-   return await booking.deletePlayer({playerId, bookingId });
-  }
+    return await booking.deletePlayer({ playerId, bookingId });
+  };
 
   render() {
     const { isLoading, isLoggedin, user } = this.state;
@@ -183,7 +181,7 @@ class AuthProvider extends React.Component {
       editBooking,
       getBooking,
       deleteParticipant,
-      addParticipant
+      addParticipant,
     } = this;
 
     return isLoading ? (
@@ -205,7 +203,7 @@ class AuthProvider extends React.Component {
           editBooking,
           getBooking,
           deleteParticipant,
-          addParticipant
+          addParticipant,
         }}
       >
         {this.props.children}

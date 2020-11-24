@@ -40,10 +40,98 @@
 /* Edit booking */
 
 .delete-me {
-  color: black;
+  color: rgb(106, 12, 12);
+  font-size: 2rem;
+  margin-left: 4rem;
+  margin-bottom: 0.5rem;
 }
 
 .delete-btn {
   border: none;
   background-color: transparent;
+}
+
+.form_firstPart {
+  margin-bottom: 1.7rem;
+  margin-top: 1rem;
+}
+
+.form_firstPart span {
+  color: #003459;
+}
+
+.form_dates {
+  color: #003459;
+}
+
+.form_participants {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin-left: 2.5rem;
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 1rem;
+}
+
+.form_eachparticipant {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.form_eachparticipant h3 {
+  padding-bottom: 1rem;
+}
+
+.form_participants_edit {
+  margin-bottom: 1rem;
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 1rem;
+}
+
+.form_participants_edit button {
+  margin: 0 auto;
+  margin-top: 0.5rem;
+  text-align: center;
+  align-items: center;
+  background-color: #003459;
+  border: none;
+  border-radius: 14px;
+  color: white;
+  padding: 0.4rem 2rem;
+  cursor: pointer;
+}
+
+.form_button_btn_edit {
+  margin: 0 auto;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  align-items: center;
+  background-color: #ffffff;
+  border: 2px solid #003459;
+  border-radius: 14px;
+  color: black;
+  padding: 0.2rem 3rem;
+  cursor: pointer;
+}
+
+.form_button_btn_edit_delete {
+  margin: 0 auto;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  align-items: center;
+  background-color: #681212;
+  border: none;
+  border-radius: 14px;
+  color: white;
+  padding: 0.4rem 3rem;
+  cursor: pointer;
 }

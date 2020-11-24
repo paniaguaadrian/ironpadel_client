@@ -2,6 +2,10 @@ import React, { Component } from "react";
 import { withAuth } from "../../lib/AuthProvider";
 import editservice from "../../lib/profile-service";
 
+// CSS
+import "./Profile.css";
+import "../../pages/Home.css";
+
 class Profile extends Component {
   state = {
     user: {},
@@ -49,49 +53,58 @@ class Profile extends Component {
     console.log(this.props.user, "this is the user");
     console.log(this.state.user, "this is the user profile");
     return (
-      <div>
+      <div className="auth_container">
         {this.state.user !== undefined &&
         this.props.user._id == this.state.user._id ? (
-          <div>
+          <div className="form_container">
             <img src={this.state.user.image} alt="" style={{ width: 100 }} />
             <form onSubmit={this.handleFormSubmit}>
-              <label>Name:</label>
-              <input
-                type="text"
-                name="username"
-                // !
-                value={this.state.username}
-                placeholder={this.state.user.username}
-                onChange={(e) => this.handleChange(e)}
-              />
-              <label>Email:</label>
-              <input
-                type="text"
-                name="email"
-                // !
-                value={this.state.email}
-                placeholder={this.state.user.email}
-                onChange={(e) => this.handleChange(e)}
-              />
-              <label>Description:</label>
-              <textarea
-                type="text"
-                name="description"
-                // !
-                value={this.state.description}
-                placeholder={this.state.user.description}
-                onChange={(e) => this.handleChange(e)}
-              />
-
-              <input type="submit" value="Edit" />
+              <div className="form_part">
+                <label>Name:</label>
+                <input
+                  type="text"
+                  name="username"
+                  // !
+                  value={this.state.username}
+                  placeholder={this.state.user.username}
+                  onChange={(e) => this.handleChange(e)}
+                />
+              </div>
+              <div className="form_part">
+                <label>Email:</label>
+                <input
+                  type="text"
+                  name="email"
+                  // !
+                  value={this.state.email}
+                  placeholder={this.state.user.email}
+                  onChange={(e) => this.handleChange(e)}
+                />
+              </div>
+              <div className="form_part">
+                <label>Description:</label>
+                <textarea
+                  type="text"
+                  name="description"
+                  // !
+                  value={this.state.description}
+                  placeholder={this.state.user.description}
+                  onChange={(e) => this.handleChange(e)}
+                />
+              </div>
+              <div className="form_button_container">
+                <input className="form_button_btn" type="submit" value="Edit" />
+              </div>
             </form>
           </div>
         ) : (
-          <div>
-            <img src={this.state.user.image} alt="" style={{ width: 100 }} />
-            <h1>Name: {this.state.user.username}</h1>
-            <h3>Email: {this.state.user.email}</h3>
-            <p>Description: {this.state.user.description}</p>
+          <div className="auth_container_profile">
+            <div className="form_container_profile">
+              <img src={this.state.user.image} alt="" style={{ width: 100 }} />
+              <h1>Name: {this.state.user.username}</h1>
+              <h4>Email: {this.state.user.email}</h4>
+              <h4>Description: {this.state.user.description}</h4>
+            </div>
           </div>
         )}
       </div>

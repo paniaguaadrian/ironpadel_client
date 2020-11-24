@@ -1,0 +1,47 @@
+.form_container img {
+  margin: 2rem 0rem;
+  border: 50%;
+}
+
+.form_part textarea {
+  width: 80%;
+  height: 10rem;
+}
+
+.auth_container_profile {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: 2rem auto;
+
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 1rem;
+  color: white;
+}
+
+.auth_container_profile img {
+  margin: 3rem 0rem;
+}
+
+.auth_container_profile h1,
+h4 {
+  text-align: left !important;
+  margin-left: 2rem;
+  padding-bottom: 1rem;
+}
+
+.form_container_profile {
+  background-color: white;
+  color: black;
+  text-align: center;
+  align-items: center;
+  border: 0px solid #003459;
+  border-radius: 14px;
+  -webkit-box-shadow: 5px 4px 12px -3px #003459;
+  box-shadow: 5px 4px 12px -3px #003459;
+
+  width: 20rem;
+  height: 30rem;
+}

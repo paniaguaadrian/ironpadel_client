@@ -33,23 +33,35 @@ class Navbar extends Component {
           <>
             <ul className={this.state.clicked ? "nav-menu active" : "nav-menu"}>
               <li className="navbar-link">
-                <Link className="navbar-text" to="/">
+                <Link onClick={this.handleClick} className="navbar-text" to="/">
                   Home
                 </Link>
               </li>
               <li className="navbar-link">
-                <Link className="navbar-text" to={`/profile/${user._id}`}>
+                <Link
+                  onClick={this.handleClick}
+                  className="navbar-text"
+                  to={`/profile/${user._id}`}
+                >
                   Profile
                 </Link>
               </li>
 
               <li className="navbar-link">
-                <Link className="navbar-text" to="/booking">
+                <Link
+                  onClick={this.handleClick}
+                  className="navbar-text"
+                  to="/booking"
+                >
                   Booking
                 </Link>
               </li>
               <li className="navbar-link">
-                <Link className="navbar-text" to="/community">
+                <Link
+                  onClick={this.handleClick}
+                  className="navbar-text"
+                  to="/community"
+                >
                   Community
                 </Link>
               </li>

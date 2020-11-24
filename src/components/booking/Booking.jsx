@@ -139,7 +139,7 @@ class Booking extends Component {
                     })}
               </select>
             </div>
-            <div className="form_part_players_container">
+            <div>
               <h2>Select your players</h2>
               <div className="form_part">
                 <label>Player #2</label>

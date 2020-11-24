@@ -97,47 +97,49 @@ class Booking extends Component {
       <div>
         {this.state.participants.length !== 0 &&
         this.props.user._id == this.state.participants[0]._id ? (
-          <div>
+          <div className="auth_container">
             <h1>Edit your match</h1>
-
-            <form onSubmit={this.handleFormSubmit}>
-              <label>Name:</label>
-              <input
-                type="text"
-                name="name"
-                // !
-                value={name}
-                placeholder={this.state.booking.name}
-                onChange={this.handleChange}
-              />
-              {this.state.booking.date ? (
-                <div>
-                  <h3>
-                    {this.state.booking.date.day}{" "}
-                    {this.state.booking.date.month} {this.state.booking.hour}
-                  </h3>
+            <div className="form_container">
+              <form onSubmit={this.handleFormSubmit}>
+                <div className="form_part">
+                  <label>Name:</label>
+                  <input
+                    type="text"
+                    name="name"
+                    // !
+                    value={name}
+                    placeholder={this.state.booking.name}
+                    onChange={this.handleChange}
+                  />
                 </div>
-              ) : null}
+                {this.state.booking.date ? (
+                  <div>
+                    <h3>
+                      {this.state.booking.date.day}{" "}
+                      {this.state.booking.date.month} {this.state.booking.hour}
+                    </h3>
+                  </div>
+                ) : null}
 
-              {this.state.participants !== 0
-                ? this.state.participants.map(function (player, index) {
-                    return (
-                      <div>
-                        <h3>
-                          Player {index + 1}: {player.username}
-                        </h3>
-                        <button
-                          onClick={() =>
-                            bookingservice.deletePlayer(player._id, id)
-                          }
-                        >
-                          Delete this player
-                        </button>
-                      </div>
-                    );
-                  })
-                : null}
-              {/* {this.state.participants.length === 1 ? 
+                {this.state.participants !== 0
+                  ? this.state.participants.map(function (player, index) {
+                      return (
+                        <div className="form_participants_edit">
+                          <h3>
+                            Player {index + 1}: {player.username}
+                          </h3>
+                          <button
+                            onClick={() =>
+                              bookingservice.deletePlayer(player._id, id)
+                            }
+                          >
+                            Delete this player
+                          </button>
+                        </div>
+                      );
+                    })
+                  : null}
+                {/* {this.state.participants.length === 1 ? 
      <div>
     <label>Add another player: </label>
     <input type="text" name={`player${this.state.participants.length+1}`}  onChange={this.handleChange}/>
@@ -164,70 +166,89 @@ class Booking extends Component {
     <input type="text" name={`player${this.state.participants.length+1}`}/>
     </div>
     : null} */}
-
-              <input type="submit" value="Edit" />
-            </form>
-            <button onClick={() => bookingservice.deleteBooking(id)}>
-              Delete this game
-            </button>
+                <div className="form_button_container_edit">
+                  <input
+                    className="form_button_btn_edit"
+                    type="submit"
+                    value="Edit"
+                  />
+                </div>
+              </form>
+              <button
+                className="form_button_btn_edit_delete"
+                onClick={() => bookingservice.deleteBooking(id)}
+              >
+                Delete this game
+              </button>
+            </div>
           </div>
         ) : (
           <div className="auth_container">
             <h1>Checkout this match</h1>
             <div className="form_container">
-              <h3>Name: {this.state.booking.name} </h3>
-              {this.state.booking.date ? (
-                <div>
-                  <h3>
-                    {this.state.booking.date.day}{" "}
-                    {this.state.booking.date.month} {this.state.booking.hour}
-                  </h3>
-                </div>
-              ) : null}
-
-              {this.state.participants !== 0
-                ? this.state.participants.map(function (player, index) {
-                    return (
-                      <div key={index}>
-                        {user.username == player.username ? (
-                          <div>
-                            <h3>
-                              Player {index + 1}: {player.username}
-                            </h3>
-                            <button
-                              className="delete-btn"
-                              onClick={() =>
-                                bookingservice.deletePlayer(player._id, id)
-                              }
-                            >
-                              <i class="fas fa-times delete-me"></i>
-                            </button>
-                          </div>
-                        ) : (
-                          <h3>
-                            Player {index + 1}: {player.username}
-                          </h3>
-                        )}
-                      </div>
-                    );
-                  })
-                : null}
+              <div className="form_firstPart">
+                <h3>
+                  Name: <span>{this.state.booking.name} </span>
+                </h3>
+                {this.state.booking.date ? (
+                  <div className="form_dates">
+                    <h3>
+                      {this.state.booking.date.day}{" "}
+                      {this.state.booking.date.month} {this.state.booking.hour}
+                    </h3>
+                  </div>
+                ) : null}
+              </div>
+              <div className="form_participants">
+                {this.state.participants !== 0
+                  ? this.state.participants.map(function (player, index) {
+                      return (
+                        <div key={index}>
+                          {user.username == player.username ? (
+                            <div className="form_eachparticipant">
+                              <h3>
+                                Player {index + 1}: {player.username}
+                              </h3>
+                              <button
+                                className="delete-btn"
+                                onClick={() =>
+                                  bookingservice.deletePlayer(player._id, id)
+                                }
+                              >
+                                <i class="fas fa-times delete-me"></i>
+                              </button>
+                            </div>
+                          ) : (
+                            <div className="form_eachparticipant">
+                              <h3>
+                                Player {index + 1}: {player.username}
+                              </h3>
+                            </div>
+                          )}
+                        </div>
+                      );
+                    })
+                  : null}
+              </div>
 
               {this.state.participants.length === 1 ? (
                 <div>
                   <button
+                    className="form_button_btn_edit"
                     onClick={() => bookingservice.addPlayer(user._id, id)}
                   >
                     Join this game
                   </button>
 
                   <button
+                    className="form_button_btn_edit"
                     onClick={() => bookingservice.addPlayer(user._id, id)}
                   >
                     Join this game
                   </button>
 
                   <button
+                    className="form_button_btn_edit"
                     onClick={() => bookingservice.addPlayer(user._id, id)}
                   >
                     Join this game
@@ -237,11 +258,13 @@ class Booking extends Component {
               {this.state.participants.length === 2 ? (
                 <div>
                   <button
+                    className="form_button_btn_edit"
                     onClick={() => bookingservice.addPlayer(user._id, id)}
                   >
                     Join this game
                   </button>
                   <button
+                    className="form_button_btn_edit"
                     onClick={() => bookingservice.addPlayer(user._id, id)}
                   >
                     Join this game
@@ -251,6 +274,7 @@ class Booking extends Component {
               {this.state.participants.length === 3 ? (
                 <div>
                   <button
+                    className="form_button_btn_edit"
                     onClick={() => bookingservice.addPlayer(user._id, id)}
                   >
                     Join this game
