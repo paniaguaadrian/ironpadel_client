@@ -16,6 +16,15 @@ class Home {
       console.log(error);
     }
   };
+
+  deleteNotification = async (id) => {
+    try {
+      await this.home.post(`/notificationDelete/${id}`);
+
+    } catch (error) {
+      console.log(error);
+    }
+  };
 }
 
 const axiosRequestFunctions = new Home();

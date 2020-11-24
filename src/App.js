@@ -1,6 +1,6 @@
 import React, { Component, useState, useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
-// import io from 'socket.io-client'
+import io from 'socket.io-client'
 import TextField from '@material-ui/core/TextField'
 
 // * Auth
@@ -25,7 +25,11 @@ import Booking from "./components/booking/Booking";
 import EditBooking from "./components/booking/EditBooking";
 import Community from "./components/community/Community";
 
-// const socket = io.connect('http://localhost:4000')
+
+// const socket = io("http://localhost:4000", {
+//   transports: ["websocket", "polling"],
+// });
+
 
 function App() {
   // const [state, setState] = useState({message: '', name: ''})

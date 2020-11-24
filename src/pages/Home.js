@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { withAuth } from "../lib/AuthProvider";
 import bookingservice from "../lib/booking-service";
+import homeservice from "../lib/home-service";
 
 // Components
 import CTANewUsers from "../components/ctaNewUsers/CTANewUsers";
@@ -25,7 +26,7 @@ class Home extends Component {
       user: theUser.data,
       // !
       bookings: theBookings,
-      notifications: theUser.data.notifications,
+      notifications: theUser.data.notifications.reverse(),
     });
   };
 
@@ -101,12 +102,12 @@ class Home extends Component {
                       return (
                         <div className="Notification_container">
                           <p>{notification.message}</p>
-                          {/* Prepare to delete notification */}
-                          <i class="fas fa-times "></i>
+                          <button onClick={() => homeservice.deleteNotification(notification._id)}><i className="fas fa-times "></i></button>
                         </div>
                       );
                     })
-                  : null}
+                    
+                  : <div className="Notification_container"> <p>You have no notifications</p> </div>}
               </div>
             </div>
             <CTABooking />

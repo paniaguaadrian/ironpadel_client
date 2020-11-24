@@ -38,7 +38,8 @@ class Community extends Component {
                     <div>
                       {booking.players
                         ? booking.players.map((player, index) => {
-                            return <h4 key={index}>{player.username}</h4>;
+                            return(index === 0 || index === 2 ?  <h4 key={index} style={{borderRight: '5px solid red', width: 50}}>{player.username}</h4>
+                            : <h4 key={index} style={{borderLeft: '5px solid red'}}>{player.username}</h4>)
                           })
                         : null}
                     </div>

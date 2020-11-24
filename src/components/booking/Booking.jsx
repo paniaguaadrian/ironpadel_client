@@ -14,12 +14,15 @@ class Booking extends Component {
     player2: "",
     player3: "",
     player4: "",
+    available: []
   };
 
   componentDidMount = async () => {
     const dates = await this.props.getDates();
+    console.log(dates)
     this.setState({
       dates: dates,
+      available: dates.available
     });
   };
 
@@ -113,7 +116,7 @@ class Booking extends Component {
           <select onChange={(e) => this.getHour(e)}>
               <option>-</option>
             {this.state.date.available
-              ? this.state.date.available.map(function (hour) {
+              ? this.state.date.available.sort().map(function (hour) {
                   return (
                     <option name="hour" value={hour}>
                       {hour}
