@@ -18,23 +18,35 @@ class Home extends Component {
     notifications: [],
   };
 
-  componentDidMount = async () => {
+  getInfo = async()  => {
     const theUser = await this.props.getUserBookings();
     const theBookings = await this.props.getUserGames();
 
     this.setState({
       user: theUser.data,
-      // !
       bookings: theBookings,
       notifications: theUser.data.notifications.reverse(),
     });
+  }
+
+  componentDidMount = () => {
+    this.getInfo()
   };
+
+  componentDidUpdate = () => {
+    this.getInfo()
+  }
 
   deleteTheBooking = async (id) => {
     await bookingservice.deleteBooking(id);
   };
 
+  deleteTheNews = async (id) => {
+    await homeservice.deleteNotification(id)
+  }
+
   render() {
+    const {deleteTheNews} = this
     return (
       <div className="Home_Section">
         {this.props.isLoggedin ? (
@@ -102,10 +114,10 @@ class Home extends Component {
                       return (notification.booking ?
                         <div className="Notification_container">
                         <Link to={`booking/${notification.booking}`}><p>{notification.message}</p></Link>
-                          <button onClick={() => homeservice.deleteNotification(notification._id)}><i className="fas fa-times "></i></button>
+                          <button onClick={() => deleteTheNews(notification._id)}><i className="fas fa-times "></i></button>
                         </div> : <div className="Notification_container">
                             <p>{notification.message}</p>
-                          <button onClick={() => homeservice.deleteNotification(notification._id)}><i className="fas fa-times "></i></button>
+                          <button onClick={() => deleteTheNews(notification._id)}><i className="fas fa-times "></i></button>
                           </div>
                       );
                     })
