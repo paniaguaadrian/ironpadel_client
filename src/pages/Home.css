@@ -175,6 +175,7 @@
   }
   .wrapper_bookings_home {
     display: flex;
+    width: 30rem;
     flex-direction: row;
     flex-wrap: wrap;
   }

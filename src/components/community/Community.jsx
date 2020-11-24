@@ -41,7 +41,9 @@ class Community extends Component {
                     <div className="court_container">
                       {booking.players
                         ? booking.players.map((player, index) => {
-                            return index === 0 || index === 2 ? (
+                            return (booking.players.length >= 2 &&
+                              index === 0) ||
+                              (booking.players.length >= 2 && index === 2) ? (
                               <h4
                                 key={index}
                                 style={{

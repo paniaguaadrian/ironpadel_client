@@ -87,16 +87,15 @@
 
   padding-top: 1rem;
   padding-left: 2rem;
+  padding-right: 2rem;
 
   width: 50%;
-
-  border-bottom: 2px dotted white;
 }
-.court_container h4:last-child {
-  border-bottom: 0px solid white;
+.court_container h4:nth-child(4) {
+  border-top: 2px dotted white;
 }
 .court_container h4:nth-child(3) {
-  border-bottom: 0px solid white;
+  border-top: 2px dotted white;
 }
 
 .button_details {
