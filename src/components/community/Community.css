@@ -37,8 +37,8 @@
 }
 
 .court_container {
-  border: 4px solid rgb(31, 155, 11);
-  border-radius: 1rem;
+  border: 2px solid rgb(31, 155, 11);
+  /* border-radius: 1rem; */
   background-color: #003459;
   color: white;
   display: flex;

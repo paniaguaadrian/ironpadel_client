@@ -58,6 +58,12 @@ class Booking extends Component {
       hour: "",
       day: 0,
     });
+
+    // setTimeout(() => {
+    //   this.props.history.push("/");
+    // }, 1500);
+
+    // this.props.history.push("/");
   };
 
   getDay = (event) => {
