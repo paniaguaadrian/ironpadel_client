@@ -91,7 +91,7 @@ class Home extends Component {
                       </div>
                     );
                   })
-                : null}
+                : <p>Book a match!!</p>}
             </div>
 
             <div>
@@ -99,11 +99,14 @@ class Home extends Component {
                 <h1>Notifications</h1>
                 {this.state.notifications.length !== 0
                   ? this.state.notifications.map(function (notification) {
-                      return (
+                      return (notification.booking ?
                         <div className="Notification_container">
-                          <p>{notification.message}</p>
+                        <Link to={`booking/${notification.booking}`}><p>{notification.message}</p></Link>
                           <button onClick={() => homeservice.deleteNotification(notification._id)}><i className="fas fa-times "></i></button>
-                        </div>
+                        </div> : <div className="Notification_container">
+                            <p>{notification.message}</p>
+                          <button onClick={() => homeservice.deleteNotification(notification._id)}><i className="fas fa-times "></i></button>
+                          </div>
                       );
                     })
                     
