@@ -12,6 +12,7 @@ class Profile extends Component {
     username: "",
     description: "",
     image: "",
+    email: ''
   };
 
   getTheUser = async () => {
@@ -20,6 +21,10 @@ class Profile extends Component {
 
     this.setState({
       user: theUser,
+      username: theUser.username,
+      description: theUser.description,
+      image: theUser.image,
+      email: theUser.email
     });
   };
 
@@ -34,37 +39,63 @@ class Profile extends Component {
     });
   };
 
+  handleFileUpload = async (e) => {
+    console.log("the file to be uploaded is: ", e.target.files[0]);
+
+    // creamos un nuevo objeto FormData
+    const uploadData = new FormData();
+
+    // imageUrl (este nombre tiene que ser igual que en el modelo, ya que usaremos req.body como argumento del método .create() cuando creemos una nueva movie en la ruta POST '/api/movies/create')
+    uploadData.append("image", e.target.files[0]);
+
+    try {
+      const res = await editservice.handleUpload(uploadData);
+
+      console.log("response is", res);
+
+      this.setState({ image: res.secure_url });
+    } catch (error) {
+      console.log("Error while uploading the file: ", error);
+    }
+  };
+
   handleFormSubmit = async (event) => {
     try {
       event.preventDefault();
-      const { username, email, description } = this.state;
+      const { username, email, description, image } = this.state;
       const { id } = this.props.match.params;
-      await editservice.editProfile({ username, email, description, id });
+      await editservice.editProfile({ username, email, description, image, id });
       console.log(username, "this is the users name");
       this.setState({
         username: "",
+        description: "",
+        image: "",
+        email: ''
       });
+      this.props.history.push('/')
     } catch (error) {
       console.log(error, "the error originated here");
     }
   };
 
   render() {
-    console.log(this.props.user, "this is the user");
-    console.log(this.state.user, "this is the user profile");
     return (
       <div className="auth_container">
         {this.state.user !== undefined &&
         this.props.user._id == this.state.user._id ? (
           <div className="form_container">
-            <img src={this.state.user.image} alt="" style={{ width: 100 }} />
+            
             <form onSubmit={this.handleFormSubmit}>
+            <div>
+            <img src={this.state.image} alt="" style={{ width: 100 }} />
+            </div>
+            
+            <input type="file" onChange={(e) => this.handleFileUpload(e)} />
               <div className="form_part">
                 <label>Name:</label>
                 <input
                   type="text"
                   name="username"
-                  // !
                   value={this.state.username}
                   placeholder={this.state.user.username}
                   onChange={(e) => this.handleChange(e)}

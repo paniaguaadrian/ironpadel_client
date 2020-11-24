@@ -27,11 +27,20 @@ class Profile {
         console.log(error)
     } 
   }
+  handleUpload = async (theFile) => {
+    console.log("file in service: ", theFile);
 
-  editProfile = async ({username, email, description, id}) => {
     try {
-        const res = await this.profile.post(`/profile/${id}`, {username, email, description})
-        console.log(username, 'this is the users name service')
+      const res = await this.profile.post("/profile/uploadpicture", theFile);
+      return res.data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  editProfile = async ({username, email, description, image, id}) => {
+    try {
+        const res = await this.profile.post(`/profile/${id}`, {username, email, description, image})
         return res.data
     } catch (error) {
         console.log(error)

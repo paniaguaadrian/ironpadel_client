@@ -41,7 +41,10 @@ class Community extends Component {
                     <div className="court_container">
                       {booking.players
                         ? booking.players.map((player, index) => {
-                            return index === 0 || index === 2 ? (
+                            return index === 0 || index === 2 ? 
+                            (
+                              <div>
+                              <img src="" / >
                               <h4
                                 key={index}
                                 style={{
@@ -50,6 +53,7 @@ class Community extends Component {
                               >
                                 {player.username}
                               </h4>
+                              </div>
                             ) : (
                               <h4
                                 key={index}

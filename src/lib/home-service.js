@@ -19,8 +19,8 @@ class Home {
 
   deleteNotification = async (id) => {
     try {
-      await this.home.post(`/notificationDelete/${id}`);
-
+      const res = await this.home.post(`/notificationDelete/${id}`);
+      return res.data
     } catch (error) {
       console.log(error);
     }

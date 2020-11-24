@@ -39,10 +39,15 @@ class Home extends Component {
 
   deleteTheBooking = async (id) => {
     await bookingservice.deleteBooking(id);
+    this.getInfo()
   };
 
-  deleteTheNews = async (id) => {
+  deleteTheNews = async (id, index) => {
     await homeservice.deleteNotification(id)
+    this.getInfo()
+    // this.setState({
+    //   notifications: this.state.notifications.slice(index, 1)
+    // })
   }
 
   render() {
@@ -110,14 +115,14 @@ class Home extends Component {
               <div className="Notifications_container">
                 <h1>Notifications</h1>
                 {this.state.notifications.length !== 0
-                  ? this.state.notifications.map(function (notification) {
+                  ? this.state.notifications.map(function (notification, index) {
                       return (notification.booking ?
                         <div className="Notification_container">
                         <Link to={`booking/${notification.booking}`}><p>{notification.message}</p></Link>
-                          <button onClick={() => deleteTheNews(notification._id)}><i className="fas fa-times "></i></button>
+                          <button onClick={() => deleteTheNews(notification._id, index)}><i className="fas fa-times "></i></button>
                         </div> : <div className="Notification_container">
                             <p>{notification.message}</p>
-                          <button onClick={() => deleteTheNews(notification._id)}><i className="fas fa-times "></i></button>
+                          <button onClick={() => deleteTheNews(notification._id, index)}><i className="fas fa-times "></i></button>
                           </div>
                       );
                     })
