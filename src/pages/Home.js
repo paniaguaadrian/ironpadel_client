@@ -33,9 +33,9 @@ class Home extends Component {
     this.getInfo()
   };
 
-  componentDidUpdate = () => {
-    this.getInfo()
-  }
+  // componentDidUpdate = () => {
+  //   this.getInfo()
+  // }
 
   deleteTheBooking = async (id) => {
     await bookingservice.deleteBooking(id);
