@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 import { withAuth } from "../../lib/AuthProvider";
 import bookingservice from "../../lib/booking-service";
 
+// CSS
+import "./Booking.css";
+
 class Booking extends Component {
   state = {
     name: "",
@@ -37,8 +40,8 @@ class Booking extends Component {
   componentDidMount = async () => {
     this.getBooking();
     this.setState({
-      count: this.state.participants.length
-    })
+      count: this.state.participants.length,
+    });
   };
 
   handleChange = (e) => {
@@ -50,17 +53,17 @@ class Booking extends Component {
     try {
       event.preventDefault();
       const { name, participants, player2, player3, player4, id } = this.state;
-    if(player2 !== ''){
-      participants.push(player2)
-    }
-    if(player3 !== ''){
-      participants.push(player3)
-    }
-    if(player4 !== ''){
-      participants.push(player4)
-    }
-    
-    this.setState({ participants: participants });
+      if (player2 !== "") {
+        participants.push(player2);
+      }
+      if (player3 !== "") {
+        participants.push(player3);
+      }
+      if (player4 !== "") {
+        participants.push(player4);
+      }
+
+      this.setState({ participants: participants });
       await bookingservice.editBooking({ name, participants, id });
       this.setState({
         name: "",
@@ -109,7 +112,7 @@ class Booking extends Component {
       gameDeleted: true
     })
   }
-
+///////////////////////////////////////////////////////////////////////////////////////
   render() {
     const { name, id, wasDeleted, gameDeleted, wasAdded } = this.state;
     const {user} = this.props
@@ -118,83 +121,134 @@ class Booking extends Component {
     const joinThisGame = this.addPlayer
     return (
       <div>
-      {this.state.participants.length !== 0 && this.props.user._id == this.state.participants[0]._id ? 
-      <div>
-        <h1>Edit your match</h1>
-
-<form onSubmit={this.handleFormSubmit}>
-  <label>Name:</label>
-  <input
-    type="text"
-    name="name"
-    // !
-    value={name}
-    placeholder={this.state.booking.name}
-    onChange={this.handleChange}
-  />
-  {this.state.booking.date ?
-  <div>
-  <h3>{this.state.booking.date.day} {this.state.booking.date.month} {this.state.booking.hour}</h3>
-  </div> : null}
+        {this.state.participants.length !== 0 &&
+        this.props.user._id == this.state.participants[0]._id ? (
+          <div className="auth_container">
+            <h1>Edit your match</h1>
+            <div className="form_container">
+              <form onSubmit={this.handleFormSubmit}>
+                <div className="form_part">
+                  <label>Name:</label>
+                  <input
+                    type="text"
+                    name="name"
+                    // !
+                    value={name}
+                    placeholder={this.state.booking.name}
+                    onChange={this.handleChange}
+                  />
+                </div>
+                {this.state.booking.date ? (
+                  <div>
+                    <h3>
+                      {this.state.booking.date.day}{" "}
+                      {this.state.booking.date.month} {this.state.booking.hour}
+                    </h3>
+                  </div>
+                ) : null}
   
-  {this.state.participants !== 0 ? this.state.participants.map(function (player, index){
-   return <div><h3>Player {index + 1}: {player.username}</h3><button onClick={() => removePlayer(player._id, id)}>Delete this player</button>
-   </div> 
+                {this.state.participants !== 0
+                  ? this.state.participants.map(function (player, index) {
+                      return (
+                        <div className="form_participants_edit">
+                          <h3>
+                            Player {index + 1}: {player.username}
+                          </h3>
+                          <button
+                            onClick={() =>
+                              removePlayer(player._id, id)
+                            }
+                          >
+                            Delete this player
+                          </button>
+                        </div>
+                      );
+                    })
+                  : null}
 
-  }) : null }
-    {wasDeleted ? <p>Player was removed succesfully!</p> : null}
-  <input type="submit" value="Edit" />
-</form>
-      <button onClick={() =>  removeGame(id)}>Delete this game</button>
-      {gameDeleted ? <p>{this.state.booking.name} was cancelled successfull!</p> : null}
-      </div> : 
+                  <div className="form_button_container_edit">
+                  {wasDeleted ? <p>Player was removed succesfully!</p> : null}
+                  <input
+                    className="form_button_btn_edit"
+                    type="submit"
+                    value="Edit"
+                  />
+                </div>
+              </form>
+              <button
+                className="form_button_btn_edit_delete"
+                onClick={() => removeGame(id)}
+              >
+                Delete this game
+              </button>
+              {gameDeleted ? <p>{this.state.booking.name} was cancelled successfull!</p> : null}
+            </div>
+          </div>
+        ): 
       
-      <div>
-      <h1>Checkout this match</h1>
-      <h3>Name: {this.state.booking.name} </h3>
-      {this.state.booking.date ?
-      <div>
-      <h3>{this.state.booking.date.day} {this.state.booking.date.month} {this.state.booking.hour}</h3>
-      </div> : null}
+        <div className="auth_container">
+            <h1>Checkout this match</h1>
+            <div className="form_container">
+              <div className="form_firstPart">
+                <h3>
+                  Name: <span>{this.state.booking.name} </span>
+                </h3>
+                {this.state.booking.date ? (
+                  <div className="form_dates">
+                    <h3>
+                      {this.state.booking.date.day}{" "}
+                      {this.state.booking.date.month} {this.state.booking.hour}
+                    </h3>
+                  </div>
+                ) : null}</div>
       
       
-  {this.state.participants !== 0 ? this.state.participants.map(function (player, index){
-   return <div key={index}>{user.username == player.username ? <div><h3>Player {index + 1}: {player.username}</h3><button onClick={() =>removePlayer(player._id, id)}>Delete</button></div> : 
-   <h3>Player {index + 1}: {player.username}</h3>}</div>
-
-  }) : null }
-  
-      {this.state.participants.length === 1 ? 
-        <div>
-          <button onClick={() => joinThisGame(user._id, id)} >Join this game</button>
-
-          <button onClick={() =>  joinThisGame(user._id, id)} >Join this game</button>
-
-          <button onClick={() => joinThisGame(user._id, id)} >Join this game</button>
-          {wasAdded ? <p>You have joined this game!</p>: null}
-        </div>
-        : null}
-      {this.state.participants.length === 2 ? 
-        <div>
-          <button onClick={() =>  joinThisGame(user._id, id)} >Join this game</button>
-          <button onClick={() =>  joinThisGame(user._id, id)} >Join this game</button>
-          {wasAdded ? <p>You have joined this game!</p>: null}
-        </div>
-        : null}
-        {this.state.participants.length === 3 ? 
-        <div>
-          <button onClick={() =>  joinThisGame(user._id, id)} >Join this game</button>
-          {wasAdded ? <p>You have joined this game!</p>: null}
+                <div className="form_participants">
+                {this.state.participants !== 0
+                  ? this.state.participants.map(function (player, index) {
+                      return (
+                        <div key={index}>
+                          {user.username == player.username ? (
+                            <div className="form_eachparticipant">
+                              <h3>
+                                Player {index + 1}: {player.username}
+                              </h3>
+                              <button
+                                className="delete-btn"
+                                onClick={() =>
+                                  deletePlayer(player._id, id)
+                                }
+                              >
+                                <i class="fas fa-times delete-me"></i>
+                              </button>
+                            </div>
+                          ) : (
+                            <div className="form_eachparticipant">
+                              <h3>
+                                Player {index + 1}: {player.username}
+                              </h3>
+                            </div>
+                          )}
+                        </div>
+                      );
+                    })
+                  : null}
+              </div>
+              {this.state.participants.length < 4 ? (
+                <div>
+                  <button
+                    className="form_button_btn_edit"
+                    onClick={() =>joinThisGame(user._id, id)}
+                  >
+                    Join this game
+                  </button>
+                </div>
+              ) : null}
+            </div>
+          </div>
+        }
         </div>
           
-        : null}
-
-    </div>
-          }
-            
-          </div>
-    );
-  }
+        )}
 }
-
 export default withAuth(Booking);

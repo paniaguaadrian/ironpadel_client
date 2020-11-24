@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { withAuth } from "../../lib/AuthProvider";
 
+// CSS
+import "./Booking.css";
+
 class Booking extends Component {
   state = {
     name: "",
@@ -36,16 +39,16 @@ class Booking extends Component {
     event.preventDefault();
     const { name, date, hour, player2, player3, player4 } = this.state;
     const participants = [this.props.user.username];
-    if(player2 !== ''){
-      participants.push(player2)
+    if (player2 !== "") {
+      participants.push(player2);
     }
-    if(player3 !== ''){
-      participants.push(player3)
+    if (player3 !== "") {
+      participants.push(player3);
     }
-    if(player4 !== ''){
-      participants.push(player4)
+    if (player4 !== "") {
+      participants.push(player4);
     }
-    
+
     this.setState({ participants: participants });
 
     this.props.makeBooking({ name, date, hour, participants });
@@ -58,6 +61,12 @@ class Booking extends Component {
       hour: "",
       day: 0,
     });
+
+    // setTimeout(() => {
+    //   this.props.history.push("/");
+    // }, 1500);
+
+    // this.props.history.push("/");
   };
 
   getDay = (event) => {
@@ -82,83 +91,102 @@ class Booking extends Component {
   render() {
     const { name, month } = this.state;
     return (
-      <div>
+      <div className="auth_container">
         <h1>Book your match</h1>
-
-        <form onSubmit={this.handleFormSubmit}>
-          <label>Name:</label>
-          <input
-            type="text"
-            name="name"
-            value={name}
-            onChange={this.handleChange}
-          />
-
-          <label>Month:</label>
-          <select>
-            <option name="month" value={month}>
-              November
-            </option>
-          </select>
-
-          <label>Day:</label>
-          <select onChange={(e) => this.getDay(e)}>
-            <option>-</option>
-            {this.state.dates.map(function (date) {
-              return (
-                <option name="day" value={date.day}>
-                  {date.day}
+        <div className="form_container">
+          <form onSubmit={this.handleFormSubmit}>
+            <div className="form_part">
+              <label>Name:</label>
+              <input
+                type="text"
+                name="name"
+                value={name}
+                placeholder="Pachanguita Domingo"
+                onChange={this.handleChange}
+              />
+            </div>
+            <div className="form_part_date">
+              <label>Month:</label>
+              <select>
+                <option name="month" value={month}>
+                  November
                 </option>
-              );
-            })}
-          </select>
-          <label>Time:</label>
-          <select onChange={(e) => this.getHour(e)}>
-              <option>-</option>
-            {this.state.date.available
-              ? this.state.date.available.sort().map(function (hour) {
+              </select>
+            </div>
+            <div className="form_part_date">
+              <label>Day:</label>
+              <select onChange={(e) => this.getDay(e)}>
+                <option>-</option>
+                {this.state.dates.map(function (date) {
                   return (
-                    <option name="hour" value={hour}>
-                      {hour}
-                    </option>
-                  );
-                })
-              : this.state.dates.length !== 0 &&
-                this.state.dates[0].available.map(function (hour) {
-                  return (
-                    <option name="hour" value={hour}>
-                      {hour}
+                    <option name="day" value={date.day}>
+                      {date.day}
                     </option>
                   );
                 })}
-          </select>
-          <div>
-            <h2>Select your players</h2>
-            <label>Player #2</label>
-            <input
-              type="text"
-              name="player2"
-              placeholder="Write user email here"
-              onChange={this.handleChange}
-            />
-            <label>Player #3</label>
-            <input
-              type="text"
-              name="player3"
-              placeholder="Write user email here"
-              onChange={this.handleChange}
-            />
-            <label>Player #4</label>
-            <input
-              type="text"
-              name="player4"
-              placeholder="Write user email here"
-              onChange={this.handleChange}
-            />
-          </div>
-
-          <input type="submit" value="Booking" />
-        </form>
+              </select>
+            </div>
+            <div className="form_part_date">
+              <label>Time:</label>
+              <select onChange={(e) => this.getHour(e)}>
+                <option>-</option>
+                {this.state.date.available
+                  ? this.state.date.available.map(function (hour) {
+                      return (
+                        <option name="hour" value={hour}>
+                          {hour}
+                        </option>
+                      );
+                    })
+                  : this.state.dates.length !== 0 &&
+                    this.state.dates[0].available.map(function (hour) {
+                      return (
+                        <option name="hour" value={hour}>
+                          {hour}
+                        </option>
+                      );
+                    })}
+              </select>
+            </div>
+            <div>
+              <h2>Select your players</h2>
+              <div className="form_part">
+                <label>Player #2</label>
+                <input
+                  type="text"
+                  name="player2"
+                  placeholder="Write user email here"
+                  onChange={this.handleChange}
+                />
+              </div>
+              <div className="form_part">
+                <label>Player #3</label>
+                <input
+                  type="text"
+                  name="player3"
+                  placeholder="Write user email here"
+                  onChange={this.handleChange}
+                />
+              </div>
+              <div className="form_part">
+                <label>Player #4</label>
+                <input
+                  type="text"
+                  name="player4"
+                  placeholder="Write user email here"
+                  onChange={this.handleChange}
+                />
+              </div>
+            </div>
+            <div className="form_button_container">
+              <input
+                className="form_button_btn"
+                type="submit"
+                value="Booking"
+              />
+            </div>
+          </form>
+        </div>
       </div>
     );
   }

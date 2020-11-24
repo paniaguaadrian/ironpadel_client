@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 import { withAuth } from "../../lib/AuthProvider";
 import communityservice from "../../lib/community-service";
 
+// CSS
+import "./Community.css";
+
 class Community extends Component {
   state = {
     bookings: [],
@@ -24,26 +27,46 @@ class Community extends Component {
     const bookings = this.state.bookings;
 
     return (
-      <div>
+      <div className="community_container">
         <h1>Welcome to the Community</h1>
         <div>
           {bookings
             ? bookings.map((booking, index) => {
                 return (
-                  <div key={index}>
+                  <div className="each_booking_community" key={index}>
                     <h3>{booking.name}</h3>
                     <p>
                       {booking.date.month} {booking.date.day} {booking.hour}
                     </p>
-                    <div>
+                    <div className="court_container">
                       {booking.players
                         ? booking.players.map((player, index) => {
-                            return(index === 0 || index === 2 ?  <h4 key={index} >{player.username}</h4>
-                            : <h4 key={index} >{player.username}</h4>)
+                            return index === 0 || index === 2 ? (
+                              <h4
+                                key={index}
+                                style={{
+                                  borderRight: "3.5px solid white",
+                                }}
+                              >
+                                {player.username}
+                              </h4>
+                            ) : (
+                              <h4
+                                key={index}
+                                // style={{ borderLeft: "5px solid red" }}
+                              >
+                                {player.username}
+                              </h4>
+                            );
                           })
                         : null}
                     </div>
-                    <Link to={`/booking/${booking._id}`}>Get details</Link>
+                    <Link
+                      className="button_details"
+                      to={`/booking/${booking._id}`}
+                    >
+                      Get details
+                    </Link>
                   </div>
                 );
               })
