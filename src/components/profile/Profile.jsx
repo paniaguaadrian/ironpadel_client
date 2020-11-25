@@ -128,6 +128,13 @@ class Profile extends Component {
                 <input className="form_button_btn" type="submit" value="Edit" />
               </div>
             </form>
+            {this.state.user.achievements ? this.state.user.achievements.map((achievement) =>{
+              return <div>
+                  <img src={achievement.image} alt="" style={{width: 100}} />
+                  <h3>{achievement.name}</h3>
+                  <p>{achievement.description}</p>
+              </div>
+            }): null}
           </div>
         ) : (
           <div className="auth_container_profile">
@@ -138,6 +145,16 @@ class Profile extends Component {
               <h4>Description: {this.state.user.description}</h4>
               <p>Games played: {this.state.user.games}</p>
               <p>Games won: {this.state.user.wins}</p>
+            </div>
+            <div> 
+            <h2>Your achievements</h2>
+            {this.state.user.achievements ? this.state.user.achievements.map((achievement) =>{
+              return <div>
+                  <img src={achievement.image} alt="" style={{width: 100}} />
+                  <h3>{achievement.name}</h3>
+                  <p>{achievement.description}</p>
+              </div>
+            }): null}
             </div>
           </div>
         )}
