@@ -3,7 +3,7 @@ import axios from "axios";
 class Home {
   constructor() {
     this.home = axios.create({
-      baseURL: process.env.REACT_APP_API_URI,
+      baseURL: process.env.REACT_APP_API_URL,
       withCredentials: true,
     });
   }
@@ -20,7 +20,7 @@ class Home {
   deleteNotification = async (id) => {
     try {
       const res = await this.home.post(`/notificationDelete/${id}`);
-      return res.data
+      return res.data;
     } catch (error) {
       console.log(error);
     }

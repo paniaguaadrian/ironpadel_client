@@ -3,7 +3,7 @@ import axios from "axios";
 class Community {
   constructor() {
     this.community = axios.create({
-      baseURL: process.env.REACT_APP_API_URI,
+      baseURL: process.env.REACT_APP_API_URL,
       withCredentials: true,
     });
   }
