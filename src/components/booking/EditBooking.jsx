@@ -37,6 +37,7 @@ class Booking extends Component {
       booking: theBooking,
       id: params.id,
       participants: theBooking.players,
+      name: theBooking.name,
     });
   };
 
@@ -55,22 +56,13 @@ class Booking extends Component {
   handleFormSubmit = async (event) => {
     try {
       event.preventDefault();
-      const { name, participants, player2, player3, player4, id } = this.state;
-      if (player2 !== "") {
-        participants.push(player2);
-      }
-      if (player3 !== "") {
-        participants.push(player3);
-      }
-      if (player4 !== "") {
-        participants.push(player4);
-      }
+      const { name, id } = this.state;
 
-      this.setState({ participants: participants });
-      await bookingservice.editBooking({ name, participants, id });
+      await bookingservice.editBooking({ name, id });
       this.setState({
         name: "",
       });
+      this.props.history.push("/");
     } catch (error) {
       console.log(error, "the error originated here");
     }
@@ -188,7 +180,7 @@ class Booking extends Component {
                     type="text"
                     name="name"
                     value={name}
-                    placeholder={this.state.booking.name}
+                    // placeholder={this.state.booking.name}
                     onChange={this.handleChange}
                   />
                 </div>
@@ -239,32 +231,36 @@ class Booking extends Component {
                   </div>
                 ) : (
                   <form onSubmit={this.handleWinners}>
-                    <label>Winner1:</label>
-                    <select onChange={(e) => this.getWinnerOne(e)}>
-                      <option>-</option>
-                      {this.state.participants
-                        ? this.state.participants.map(function (player) {
-                            return (
-                              <option name="winner1" value={player._id}>
-                                {player.username}
-                              </option>
-                            );
-                          })
-                        : null}
-                    </select>
-                    <label>Winner2:</label>
-                    <select onChange={(e) => this.getWinnerTwo(e)}>
-                      <option>-</option>
-                      {this.state.participants
-                        ? this.state.participants.map(function (player) {
-                            return (
-                              <option name="winner2" value={player._id}>
-                                {player.username}
-                              </option>
-                            );
-                          })
-                        : null}
-                    </select>
+                    <div className="form_part_2">
+                      <label>Winner 1:</label>
+                      <select onChange={(e) => this.getWinnerOne(e)}>
+                        <option>-</option>
+                        {this.state.participants
+                          ? this.state.participants.map(function (player) {
+                              return (
+                                <option name="winner1" value={player._id}>
+                                  {player.username}
+                                </option>
+                              );
+                            })
+                          : null}
+                      </select>
+                    </div>
+                    <div className="form_part_2">
+                      <label>Winner 2:</label>
+                      <select onChange={(e) => this.getWinnerTwo(e)}>
+                        <option>-</option>
+                        {this.state.participants
+                          ? this.state.participants.map(function (player) {
+                              return (
+                                <option name="winner2" value={player._id}>
+                                  {player.username}
+                                </option>
+                              );
+                            })
+                          : null}
+                      </select>
+                    </div>
                     <input
                       className="form_button_btn_2"
                       type="submit"

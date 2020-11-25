@@ -5,6 +5,7 @@ import editservice from "../../lib/profile-service";
 // CSS
 import "./Profile.css";
 import "../../pages/Home.css";
+import "../../pages/auth.css";
 
 class Profile extends Component {
   state = {
@@ -96,80 +97,91 @@ class Profile extends Component {
       <div key={window.location.pathname} className="auth_container">
         {this.state.user !== undefined &&
         this.props.user._id == this.state.user._id ? (
-          <div className="profile_container">
-            <div className="form_container">
-              <form onSubmit={this.handleFormSubmit}>
-                <div>
-                  <img src={this.state.image} alt="" style={{ width: 100 }} />
-                </div>
+          <div>
+            <div className="profile_container">
+              <div className="form_container_0">
+                <form onSubmit={this.handleFormSubmit}>
+                  <div>
+                    <img src={this.state.image} alt="" style={{ width: 100 }} />
+                  </div>
 
-                <input type="file" onChange={(e) => this.handleFileUpload(e)} />
-                <div className="form_part">
-                  <label>Name:</label>
                   <input
-                    type="text"
-                    name="username"
-                    value={this.state.username}
-                    placeholder={this.state.user.username}
-                    onChange={(e) => this.handleChange(e)}
+                    type="file"
+                    onChange={(e) => this.handleFileUpload(e)}
                   />
-                </div>
-                <div className="form_part">
-                  <label>Email:</label>
-                  <input
-                    type="text"
-                    name="email"
-                    // !
-                    value={this.state.email}
-                    placeholder={this.state.user.email}
-                    onChange={(e) => this.handleChange(e)}
-                  />
-                </div>
-                <div className="form_part">
-                  <label>Description:</label>
-                  <textarea
-                    type="text"
-                    name="description"
-                    // !
-                    value={this.state.description}
-                    placeholder={this.state.user.description}
-                    onChange={(e) => this.handleChange(e)}
-                  />
-                </div>
-                <div className="form_button_container">
-                  <input
-                    className="form_button_btn"
-                    type="submit"
-                    value="Edit"
-                  />
-                </div>
-              </form>
+                  <div className="form_part">
+                    <label>Name:</label>
+                    <input
+                      type="text"
+                      name="username"
+                      value={this.state.username}
+                      placeholder={this.state.user.username}
+                      onChange={(e) => this.handleChange(e)}
+                    />
+                  </div>
+                  <div className="form_part">
+                    <label>Email:</label>
+                    <input
+                      type="text"
+                      name="email"
+                      // !
+                      value={this.state.email}
+                      placeholder={this.state.user.email}
+                      onChange={(e) => this.handleChange(e)}
+                    />
+                  </div>
+                  <div className="form_part">
+                    <label>Description:</label>
+                    <textarea
+                      type="text"
+                      name="description"
+                      // !
+                      value={this.state.description}
+                      placeholder={this.state.user.description}
+                      onChange={(e) => this.handleChange(e)}
+                    />
+                  </div>
+                  <div className="form_button_container">
+                    <input
+                      className="form_button_btn"
+                      type="submit"
+                      value="Edit"
+                    />
+                  </div>
+                </form>
+              </div>
+              <div className="form_container_stats_user">
+                <h1>Players Stats:</h1>
+                <p>
+                  Games played: <span>{this.state.user.games}</span>
+                </p>
+                <p>
+                  Games won 🎉 : <span>{this.state.user.wins}</span>
+                </p>
+              </div>
             </div>
-            <div className="form_container_stats_user">
-              <h1>Players Stats:</h1>
-              <p>
-                Games played: <span>{this.state.user.games}</span>
-              </p>
-              <p>
-                Games won 🎉 : <span>{this.state.user.wins}</span>
-              </p>
+            <div className="form_container_achievements">
+              <div>
+                <h2>Your achievements</h2>
+              </div>
+              <div className="achievements_alone">
+                {this.state.user.achievements
+                  ? this.state.user.achievements.map((achievement) => {
+                      return (
+                        <div className="each_achievement">
+                          <img
+                            src={achievement.image}
+                            alt=""
+                            style={{ width: 100 }}
+                          />
+                          <h3>{achievement.name}</h3>
+                          <p>{achievement.description}</p>
+                        </div>
+                      );
+                    })
+                  : null}
+              </div>
             </div>
-
-            {this.state.user.achievements
-              ? this.state.user.achievements.map((achievement) => {
-                  return (
-                    <div>
-                      <img
-                        src={achievement.image}
-                        alt=""
-                        style={{ width: 100 }}
-                      />
-                      <h3>{achievement.name}</h3>
-                      <p>{achievement.description}</p>
-                    </div>
-                  );
-                })
-              : null}
           </div>
         ) : (
           <div className="auth_container_profile">
@@ -194,23 +206,23 @@ class Profile extends Component {
                 </p>
               </div>
             </div>
-            <div>
-              <h2>Your achievements</h2>
-              {this.state.user.achievements
-                ? this.state.user.achievements.map((achievement) => {
-                    return (
-                      <div>
-                        <img
-                          src={achievement.image}
-                          alt=""
-                          style={{ width: 100 }}
-                        />
-                        <h3>{achievement.name}</h3>
-                        <p>{achievement.description}</p>
-                      </div>
-                    );
-                  })
-                : null}
+            <div className="form_container_achievements">
+              <div>
+                <h2>Your achievements</h2>
+              </div>
+              <div className="achievements_alone">
+                {this.state.user.achievements
+                  ? this.state.user.achievements.map((achievement) => {
+                      return (
+                        <div className="each_achievement">
+                          <img src={achievement.image} alt="" />
+                          <h3>{achievement.name}</h3>
+                          <p>{achievement.description}</p>
+                        </div>
+                      );
+                    })
+                  : null}
+              </div>
             </div>
           </div>
         )}

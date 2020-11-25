@@ -42,9 +42,9 @@ class Booking {
     }
   };
 
-  editBooking = async ({ id, name, participants }) => {
+  editBooking = async ({ id, name }) => {
     try {
-      const res = await this.booking.post(`/booking/${id}`, { name, participants });
+      const res = await this.booking.post(`/booking/${id}`, { name });
       return res.data;
     } catch (error) {
       console.log(error);
@@ -62,24 +62,24 @@ class Booking {
   };
 
   addPlayer = async (userID, bookingID) => {
-
-    const res = await this.booking.post(`/booking/addPlayer/${bookingID}/${userID}`)
-    return res.data
-  }
+    const res = await this.booking.post(
+      `/booking/addPlayer/${bookingID}/${userID}`
+    );
+    return res.data;
+  };
 
   declareWinners = async (winners, id) => {
-    
-    const res = await this.booking.post(`/booking/declarewinners/${id}`, {winners})
-    console.log(id, 'this is the booking of the ID')
-    return res.data
-  }
+    const res = await this.booking.post(`/booking/declarewinners/${id}`, {
+      winners,
+    });
+    console.log(id, "this is the booking of the ID");
+    return res.data;
+  };
 
   // ! WE NEED TO ADD DELETE
 
   deleteBooking = async (id) => {
     try {
-     
-      
       const res = await this.booking.post(`/booking/${id}/deleteBooking`);
       return res.data;
     } catch (error) {
@@ -89,15 +89,16 @@ class Booking {
 
   deletePlayer = async (playerId, bookingId) => {
     try {
-      console.log(playerId, 'is this the player id???')
-      console.log(bookingId, 'is this the booking id???')
-      const res = await this.booking.post(`/booking/deletePlayer/${bookingId}/${playerId}`);
+      console.log(playerId, "is this the player id???");
+      console.log(bookingId, "is this the booking id???");
+      const res = await this.booking.post(
+        `/booking/deletePlayer/${bookingId}/${playerId}`
+      );
       return res.data;
     } catch (error) {
       console.log(error);
     }
   };
-
 }
 
 const axiosRequestFunctions = new Booking();
