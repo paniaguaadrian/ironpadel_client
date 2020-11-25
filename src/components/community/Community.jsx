@@ -55,7 +55,7 @@ class Community extends Component {
                             ) : (
                               <h4
                                 key={index}
-                                // style={{ borderLeft: "5px solid red" }}
+                                // style={{ borderLeft: “5px solid red” }}
                               >
                                 {player.username}
                               </h4>
@@ -78,5 +78,4 @@ class Community extends Component {
     );
   }
 }
-
 export default withAuth(Community);
