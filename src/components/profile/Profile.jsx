@@ -154,6 +154,22 @@ class Profile extends Component {
                 Games won 🎉 : <span>{this.state.user.wins}</span>
               </p>
             </div>
+
+            {this.state.user.achievements
+              ? this.state.user.achievements.map((achievement) => {
+                  return (
+                    <div>
+                      <img
+                        src={achievement.image}
+                        alt=""
+                        style={{ width: 100 }}
+                      />
+                      <h3>{achievement.name}</h3>
+                      <p>{achievement.description}</p>
+                    </div>
+                  );
+                })
+              : null}
           </div>
         ) : (
           <div className="auth_container_profile">
@@ -177,6 +193,24 @@ class Profile extends Component {
                   Games won 🎉 : <span>{this.state.user.wins}</span>
                 </p>
               </div>
+            </div>
+            <div>
+              <h2>Your achievements</h2>
+              {this.state.user.achievements
+                ? this.state.user.achievements.map((achievement) => {
+                    return (
+                      <div>
+                        <img
+                          src={achievement.image}
+                          alt=""
+                          style={{ width: 100 }}
+                        />
+                        <h3>{achievement.name}</h3>
+                        <p>{achievement.description}</p>
+                      </div>
+                    );
+                  })
+                : null}
             </div>
           </div>
         )}
