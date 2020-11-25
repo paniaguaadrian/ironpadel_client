@@ -44,7 +44,6 @@ class Community extends Component {
                             return index === 0 || index === 2 ? 
                             (
                               <div>
-                              <img src="" / >
                               <h4
                                 key={index}
                                 style={{
