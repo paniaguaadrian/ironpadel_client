@@ -46,7 +46,7 @@ class Navbar extends Component {
                 <Link
                   onClick={this.handleClick}
                   className="navbar-text"
-                  to={`/profile/${user._id}`}
+                  to={`/profile/${this.props.user._id}`}
                 >
                   Profile
                 </Link>

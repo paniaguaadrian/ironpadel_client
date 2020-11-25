@@ -26,7 +26,7 @@ class Booking extends Component {
     wasAdded: false,
     declaredWinners: false,
     winner1: {},
-    winner2: {}
+    winner2: {},
   };
 
   getBooking = async () => {
@@ -80,19 +80,20 @@ class Booking extends Component {
     try {
       event.preventDefault();
       const { winner1, winner2, id } = this.state;
-      console.log(winner1)
-      console.log(winner2)
-      console.log(id)
-      await bookingservice.declareWinners({ winner1, winner2}, id );
+      console.log(winner1);
+      console.log(winner2);
+      console.log(id);
+      await bookingservice.declareWinners({ winner1, winner2 }, id);
       this.setState({
-        winner1, 
+        winner1,
         winner2,
-        declaredWinners: true 
+        declaredWinners: true,
       });
+      this.getBooking();
     } catch (error) {
       console.log(error, "the error originated here");
     }
-  }
+  };
 
   getDay = (event) => {
     const day = Number(event.target.value);
@@ -159,8 +160,6 @@ class Booking extends Component {
     });
   };
 
-
-
   ///////////////////////////////////////////////////////////////////////////////////////
   render() {
     const { name, id, wasDeleted, gameDeleted, wasAdded, booking } = this.state;
@@ -181,7 +180,7 @@ class Booking extends Component {
         this.props.user._id == this.state.participants[0]._id ? (
           <div className="auth_container">
             <h1>Edit your match</h1>
-            <div className="form_container">
+            <div className="form_container_4">
               <form onSubmit={this.handleFormSubmit}>
                 <div className="form_part">
                   <label>Name:</label>
@@ -204,19 +203,20 @@ class Booking extends Component {
 
                 {this.state.participants !== 0
                   ? this.state.participants.map(function (player, index) {
-                     return (index === 0 ? <div className="form_participants_edit">
-                          <h3>
-                            Creator: {player.username}
-                          </h3>
-                        
-                        </div> : <div className="form_participants_edit">
+                      return index === 0 ? (
+                        <div className="form_participants_edit">
+                          <h3>Creator: {player.username}</h3>
+                        </div>
+                      ) : (
+                        <div className="form_participants_edit">
                           <h3>
                             Player {index + 1}: {player.username}
                           </h3>
                           <button onClick={() => removePlayer(player._id, id)}>
                             Delete this player
                           </button>
-                        </div>) 
+                        </div>
+                      );
                     })
                   : null}
 
@@ -230,44 +230,48 @@ class Booking extends Component {
                 </div>
               </form>
               <div>
-              
-              {this.state.booking.winners.length !== 0 ? 
-                 (<div>
-                  <h3>Winners: </h3>
-                {booking.winners.map((winner) => {
-                return <h3>{winner.username}</h3>
-              })}</div>) : <form onSubmit={this.handleWinners}>
-                <label>Winner1:</label>
-                <select onChange={(e) => this.getWinnerOne(e)}>
-                <option>-</option>
-                {this.state.participants
-                  ? this.state.participants.map(function (player) {
-                      return (
-                        <option name="winner1" value={player._id}>
-                          {player.username}
-                        </option>
-                      );
-                    }): null}
-                </select>
-                <label>Winner2:</label>
-                <select onChange={(e) => this.getWinnerTwo(e)}>
-                <option>-</option>
-                {this.state.participants
-                  ? this.state.participants.map(function (player) {
-                      return (
-                        <option name="winner2" value={player._id}>
-                          {player.username}
-                        </option>
-                      );
-                    }): null}
-                </select>
-                <input
-                className="form_button_btn"
-                type="submit"
-                value="Declare winners"
-              />
-                </form>
-              }
+                {this.state.booking.winners.length !== 0 ? (
+                  <div>
+                    <h3>Winners: </h3>
+                    {booking.winners.map((winner) => {
+                      return <h3>{winner.username}</h3>;
+                    })}
+                  </div>
+                ) : (
+                  <form onSubmit={this.handleWinners}>
+                    <label>Winner1:</label>
+                    <select onChange={(e) => this.getWinnerOne(e)}>
+                      <option>-</option>
+                      {this.state.participants
+                        ? this.state.participants.map(function (player) {
+                            return (
+                              <option name="winner1" value={player._id}>
+                                {player.username}
+                              </option>
+                            );
+                          })
+                        : null}
+                    </select>
+                    <label>Winner2:</label>
+                    <select onChange={(e) => this.getWinnerTwo(e)}>
+                      <option>-</option>
+                      {this.state.participants
+                        ? this.state.participants.map(function (player) {
+                            return (
+                              <option name="winner2" value={player._id}>
+                                {player.username}
+                              </option>
+                            );
+                          })
+                        : null}
+                    </select>
+                    <input
+                      className="form_button_btn_2"
+                      type="submit"
+                      value="Declare winners"
+                    />
+                  </form>
+                )}
               </div>
               <button
                 className="form_button_btn_edit_delete"
@@ -283,7 +287,7 @@ class Booking extends Component {
         ) : (
           <div className="auth_container">
             <h1>Checkout this match</h1>
-            <div className="form_container">
+            <div className="form_container_2">
               <div className="form_firstPart">
                 <h3>
                   Name: <span>{this.state.booking.name} </span>
@@ -315,12 +319,11 @@ class Booking extends Component {
                                 <i class="fas fa-times delete-me"></i>
                               </button>
                             </div>
-                          ) : (index === 0 ?
+                          ) : index === 0 ? (
                             <div className="form_eachparticipant">
-                              <h3>
-                                Creator: {player.username}
-                              </h3>
-                            </div> :
+                              <h3>Creator: {player.username}</h3>
+                            </div>
+                          ) : (
                             <div className="form_eachparticipant">
                               <h3>
                                 Player {index + 1}: {player.username}

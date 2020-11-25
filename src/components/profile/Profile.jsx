@@ -12,7 +12,7 @@ class Profile extends Component {
     username: "",
     description: "",
     image: "",
-    email: ''
+    email: "",
   };
 
   getTheUser = async () => {
@@ -24,13 +24,19 @@ class Profile extends Component {
       username: theUser.username,
       description: theUser.description,
       image: theUser.image,
-      email: theUser.email
+      email: theUser.email,
     });
   };
 
-  componentDidMount = async () => {
+  componentDidMount = () => {
     this.getTheUser();
   };
+
+  // componentDidUpdate(prevProps) {
+  //   if (this.match.params.id !== prevProps.match.params.id) {
+  //     // call the fetch function again
+  //   }
+  // }
 
   handleChange = async (e) => {
     const { name, value } = e.target;
@@ -64,80 +70,113 @@ class Profile extends Component {
       event.preventDefault();
       const { username, email, description, image } = this.state;
       const { id } = this.props.match.params;
-      await editservice.editProfile({ username, email, description, image, id });
+      await editservice.editProfile({
+        username,
+        email,
+        description,
+        image,
+        id,
+      });
       console.log(username, "this is the users name");
       this.setState({
         username: "",
         description: "",
         image: "",
-        email: ''
+        email: "",
       });
-      this.props.history.push('/')
+      this.props.history.push("/");
     } catch (error) {
       console.log(error, "the error originated here");
     }
   };
 
   render() {
-    console.log(this.state.user)
+    console.log(this.state.user);
     return (
-      <div className="auth_container">
+      <div key={window.location.pathname} className="auth_container">
         {this.state.user !== undefined &&
         this.props.user._id == this.state.user._id ? (
-          <div className="form_container">
-            
-            <form onSubmit={this.handleFormSubmit}>
-            <div>
-            <img src={this.state.image} alt="" style={{ width: 100 }} />
+          <div className="profile_container">
+            <div className="form_container">
+              <form onSubmit={this.handleFormSubmit}>
+                <div>
+                  <img src={this.state.image} alt="" style={{ width: 100 }} />
+                </div>
+
+                <input type="file" onChange={(e) => this.handleFileUpload(e)} />
+                <div className="form_part">
+                  <label>Name:</label>
+                  <input
+                    type="text"
+                    name="username"
+                    value={this.state.username}
+                    placeholder={this.state.user.username}
+                    onChange={(e) => this.handleChange(e)}
+                  />
+                </div>
+                <div className="form_part">
+                  <label>Email:</label>
+                  <input
+                    type="text"
+                    name="email"
+                    // !
+                    value={this.state.email}
+                    placeholder={this.state.user.email}
+                    onChange={(e) => this.handleChange(e)}
+                  />
+                </div>
+                <div className="form_part">
+                  <label>Description:</label>
+                  <textarea
+                    type="text"
+                    name="description"
+                    // !
+                    value={this.state.description}
+                    placeholder={this.state.user.description}
+                    onChange={(e) => this.handleChange(e)}
+                  />
+                </div>
+                <div className="form_button_container">
+                  <input
+                    className="form_button_btn"
+                    type="submit"
+                    value="Edit"
+                  />
+                </div>
+              </form>
             </div>
-            
-            <input type="file" onChange={(e) => this.handleFileUpload(e)} />
-              <div className="form_part">
-                <label>Name:</label>
-                <input
-                  type="text"
-                  name="username"
-                  value={this.state.username}
-                  placeholder={this.state.user.username}
-                  onChange={(e) => this.handleChange(e)}
-                />
-              </div>
-              <div className="form_part">
-                <label>Email:</label>
-                <input
-                  type="text"
-                  name="email"
-                  // !
-                  value={this.state.email}
-                  placeholder={this.state.user.email}
-                  onChange={(e) => this.handleChange(e)}
-                />
-              </div>
-              <div className="form_part">
-                <label>Description:</label>
-                <textarea
-                  type="text"
-                  name="description"
-                  // !
-                  value={this.state.description}
-                  placeholder={this.state.user.description}
-                  onChange={(e) => this.handleChange(e)}
-                />
-              </div>
-              <div className="form_button_container">
-                <input className="form_button_btn" type="submit" value="Edit" />
-              </div>
-            </form>
+            <div className="form_container_stats_user">
+              <h1>Players Stats:</h1>
+              <p>
+                Games played: <span>{this.state.user.games}</span>
+              </p>
+              <p>
+                Games won 🎉 : <span>{this.state.user.wins}</span>
+              </p>
+            </div>
           </div>
         ) : (
           <div className="auth_container_profile">
-            <div className="form_container_profile">
-              <img src={this.state.user.image} alt="" style={{ width: 100 }} />
-              <h1>Name: {this.state.user.username}</h1>
-              <h4>Email: {this.state.user.email}</h4>
-              <h4>Description: {this.state.user.description}</h4>
-              <p>Games played: {this.state.user.games}</p>
-              <p>Games won: {this.state.user.wins}</p>
+            <div className="profile_container">
+              <div className="form_container_profile">
+                <img
+                  src={this.state.user.image}
+                  alt=""
+                  style={{ width: 100 }}
+                />
+                <h1>{this.state.user.username}</h1>
+                <h4>{this.state.user.email}</h4>
+                <p>{this.state.user.description}</p>
+              </div>
+              <div className="form_container_stats">
+                <h1>Players Stats:</h1>
+                <p>
+                  Games played: <span>{this.state.user.games}</span>
+                </p>
+                <p>
+                  Games won 🎉 : <span>{this.state.user.wins}</span>
+                </p>
+              </div>
             </div>
           </div>
         )}

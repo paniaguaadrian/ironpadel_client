@@ -27,7 +27,7 @@ class Signup extends Component {
     return (
       <div className="auth_container">
         <h1>Sign Up</h1>
-        <div className="form_container">
+        <div className="form_container_5">
           <form onSubmit={this.handleFormSubmit}>
             <div className="form_part">
               <label>Username</label>

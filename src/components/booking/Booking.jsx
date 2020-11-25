@@ -93,7 +93,7 @@ class Booking extends Component {
     return (
       <div className="auth_container">
         <h1>Book your match</h1>
-        <div className="form_container">
+        <div className="form_container_3">
           <form onSubmit={this.handleFormSubmit}>
             <div className="form_part">
               <label>Name:</label>

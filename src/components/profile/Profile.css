@@ -14,7 +14,7 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  margin: 2rem auto;
+  margin: 2rem 2rem;
 
   font-family: "Source Sans Pro", sans-serif;
   font-size: 1rem;
@@ -46,6 +46,75 @@ h4 {
   height: 30rem;
 }
 
+.profile_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.form_container_stats {
+  background-color: white;
+  color: black;
+  text-align: center;
+  align-items: center;
+  border: 0px solid #003459;
+  border-radius: 14px;
+  -webkit-box-shadow: 5px 4px 12px -3px #003459;
+  box-shadow: 5px 4px 12px -3px #003459;
+  width: 20rem;
+  height: 20rem;
+  margin-top: 3rem;
+}
+
+.form_container_stats_user {
+  background-color: white;
+  color: black;
+  text-align: center;
+  align-items: center;
+  border: 0px solid #003459;
+  border-radius: 14px;
+  -webkit-box-shadow: 5px 4px 12px -3px #003459;
+  box-shadow: 5px 4px 12px -3px #003459;
+  width: 20rem;
+  height: 20rem;
+  margin-top: 3rem;
+}
+
+.form_container_stats_user h1 {
+  margin-top: 2rem;
+  color: #003459;
+}
+
+.form_container_stats h1 {
+  margin-top: 2rem;
+  color: #003459;
+}
+
+.form_container_stats_user p {
+  margin-top: 2rem;
+  text-align: left;
+  margin-left: 2rem;
+  font-weight: 600;
+}
+
+.form_container_stats_user span {
+  color: #003459;
+  font-weight: bold;
+}
+
+.form_container_stats p {
+  margin-top: 2rem;
+  text-align: left;
+  margin-left: 2rem;
+  font-weight: 600;
+}
+
+.form_container_stats span {
+  color: #003459;
+  font-weight: bold;
+}
+
 @media screen and (min-width: 960px) {
   .form_container_profile {
     background-color: white;
@@ -57,7 +126,44 @@ h4 {
     -webkit-box-shadow: 5px 4px 12px -3px #003459;
     box-shadow: 5px 4px 12px -3px #003459;
 
+    width: 20rem;
+    height: 30rem;
+  }
+
+  .profile_container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    text-align: center;
+  }
+
+  .form_container_stats {
+    background-color: white;
+    color: black;
+    text-align: center;
+    align-items: center;
+    border: 0px solid #003459;
+    border-radius: 14px;
+    -webkit-box-shadow: 5px 4px 12px -3px #003459;
+    box-shadow: 5px 4px 12px -3px #003459;
+    width: 20rem;
+    height: 20rem;
+    margin-top: 0rem;
+    margin-left: 2rem;
+  }
+  .form_container_stats_user {
+    background-color: white;
+    color: black;
+    text-align: center;
+    align-items: center;
+    border: 0px solid #003459;
+    border-radius: 14px;
+    -webkit-box-shadow: 5px 4px 12px -3px #003459;
+    box-shadow: 5px 4px 12px -3px #003459;
     width: 40rem;
-    height: 40rem;
+    height: 20rem;
+    margin-top: 0rem;
+    margin-left: 2rem;
   }
 }

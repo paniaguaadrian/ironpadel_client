@@ -42,7 +42,60 @@
   align-items: center;
   border: 0px solid #003459;
   border-radius: 14px;
-  width: 80%;
+  width: 100%;
+  height: 50rem;
+  -webkit-box-shadow: 5px 4px 12px -3px #003459;
+  box-shadow: 5px 4px 12px -3px #003459;
+}
+
+.form_container_3 {
+  background-color: white;
+  color: black;
+  text-align: center;
+  align-items: center;
+  border: 0px solid #003459;
+  border-radius: 14px;
+  width: 90%;
+  height: 100%;
+  -webkit-box-shadow: 5px 4px 12px -3px #003459;
+  box-shadow: 5px 4px 12px -3px #003459;
+}
+
+.form_container_2 {
+  background-color: white;
+  color: black;
+  text-align: center;
+  align-items: center;
+  border: 0px solid #003459;
+  border-radius: 14px;
+  width: 90%;
+  height: 100%;
+  -webkit-box-shadow: 5px 4px 12px -3px #003459;
+  box-shadow: 5px 4px 12px -3px #003459;
+}
+
+.form_container_4 {
+  background-color: white;
+  color: black;
+  text-align: center;
+  align-items: center;
+  border: 0px solid #003459;
+  border-radius: 14px;
+  width: 90%;
+  height: 100%;
+  -webkit-box-shadow: 5px 4px 12px -3px #003459;
+  box-shadow: 5px 4px 12px -3px #003459;
+}
+
+.form_container_5 {
+  background-color: white;
+  color: black;
+  text-align: center;
+  align-items: center;
+  border: 0px solid #003459;
+  border-radius: 14px;
+  width: 90%;
+  height: 100%;
   -webkit-box-shadow: 5px 4px 12px -3px #003459;
   box-shadow: 5px 4px 12px -3px #003459;
 }
@@ -78,6 +131,19 @@
   border-radius: 14px;
   padding: 0.9rem 3rem;
   cursor: pointer;
+}
+
+@media screen and (min-width: 960px) {
+  .form_button_btn_2 {
+    background-color: #003459;
+    color: white;
+    border: none;
+    border-radius: 14px;
+    padding: 0.5rem 3rem;
+    cursor: pointer;
+    margin-top: 2rem;
+    margin-left: 1rem;
+  }
 }
 
 .Already_acc {
