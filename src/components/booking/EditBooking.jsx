@@ -221,13 +221,7 @@ class Booking extends Component {
                               </h3>
                               <button
                                 className="delete-btn"
-<<<<<<< HEAD
-                                onClick={() =>
-                                  removePlayer(player._id, id)
-                                }
-=======
                                 onClick={() => removePlayer(player._id, id)}
->>>>>>> branch-adrian
                               >
                                 <i class="fas fa-times delete-me"></i>
                               </button>
