@@ -49,6 +49,7 @@
 .delete-btn {
   border: none;
   background-color: transparent;
+  cursor: pointer;
 }
 
 .form_firstPart {

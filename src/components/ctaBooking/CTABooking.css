@@ -13,6 +13,22 @@
   background-color: white;
 }
 
+@media screen and (min-width: 960px) {
+  .CTABooking_container {
+    height: 35rem;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    border: 0px solid #06348a;
+    -webkit-box-shadow: 5px 4px 12px -3px #003459;
+    box-shadow: 5px 4px 12px -3px #003459;
+    margin: 2rem auto;
+    background-color: white;
+  }
+}
+
 /* CTA Title */
 
 .CTABooking_title {

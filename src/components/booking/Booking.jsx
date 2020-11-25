@@ -17,15 +17,15 @@ class Booking extends Component {
     player2: "",
     player3: "",
     player4: "",
-    available: []
+    available: [],
   };
 
   componentDidMount = async () => {
     const dates = await this.props.getDates();
-    console.log(dates)
+    console.log(dates);
     this.setState({
       dates: dates,
-      available: dates.available
+      available: dates.available,
     });
   };
 
@@ -66,7 +66,7 @@ class Booking extends Component {
     //   this.props.history.push("/");
     // }, 1500);
 
-    // this.props.history.push("/");
+    this.props.history.push("/");
   };
 
   getDay = (event) => {

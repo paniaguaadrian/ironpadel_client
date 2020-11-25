@@ -45,3 +45,19 @@ h4 {
   width: 20rem;
   height: 30rem;
 }
+
+@media screen and (min-width: 960px) {
+  .form_container_profile {
+    background-color: white;
+    color: black;
+    text-align: center;
+    align-items: center;
+    border: 0px solid #003459;
+    border-radius: 14px;
+    -webkit-box-shadow: 5px 4px 12px -3px #003459;
+    box-shadow: 5px 4px 12px -3px #003459;
+
+    width: 40rem;
+    height: 40rem;
+  }
+}

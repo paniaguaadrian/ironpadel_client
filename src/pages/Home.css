@@ -86,13 +86,28 @@
 
 /* Notifications section */
 .Notifications_container {
-  margin-top: 4rem;
+  margin-top: 2rem;
   font-family: "Fira Sans", sans-serif;
   color: black;
   display: flex;
   flex-direction: column;
   justify-content: center;
   text-align: left;
+}
+
+.Notifications_container button {
+  border: none;
+  background: none;
+  margin-left: 1rem;
+  cursor: pointer;
+}
+
+.Notifications_container p {
+  color: black;
+}
+
+.Notifications_container p:hover {
+  text-decoration: underline;
 }
 
 .Notifications_container h1 {
@@ -138,5 +153,30 @@
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 3s linear;
+  }
+}
+
+.nomatches_container h4 {
+  font-family: "Source Sans Pro", sans-serif;
+  font-weight: 400;
+}
+
+@media screen and (min-width: 960px) {
+  .wrapper-mobile-home {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  .Notifications_container {
+    margin-top: 4rem;
+    margin-left: 10rem;
+  }
+  .wrapper_bookings_home {
+    display: flex;
+    width: 30rem;
+    flex-direction: row;
+    flex-wrap: wrap;
   }
 }

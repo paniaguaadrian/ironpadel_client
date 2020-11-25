@@ -29,7 +29,7 @@ class Community extends Component {
     return (
       <div className="community_container">
         <h1>Welcome to the Community</h1>
-        <div>
+        <div className="wrapp_matches_container">
           {bookings
             ? bookings.map((booking, index) => {
                 return (
@@ -41,9 +41,15 @@ class Community extends Component {
                     <div className="court_container">
                       {booking.players
                         ? booking.players.map((player, index) => {
+<<<<<<< HEAD
                             return index === 0 || index === 2 ? 
                             (
                               <div>
+=======
+                            return (booking.players.length >= 2 &&
+                              index === 0) ||
+                              (booking.players.length >= 2 && index === 2) ? (
+>>>>>>> branch-adrian
                               <h4
                                 key={index}
                                 style={{
