@@ -79,6 +79,7 @@ class Profile extends Component {
   };
 
   render() {
+    console.log(this.state.user)
     return (
       <div className="auth_container">
         {this.state.user !== undefined &&
@@ -135,6 +136,8 @@ class Profile extends Component {
               <h1>Name: {this.state.user.username}</h1>
               <h4>Email: {this.state.user.email}</h4>
               <h4>Description: {this.state.user.description}</h4>
+              <p>Games played: {this.state.user.games}</p>
+              <p>Games won: {this.state.user.wins}</p>
             </div>
           </div>
         )}

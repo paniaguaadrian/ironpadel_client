@@ -62,9 +62,15 @@ class Booking {
   };
 
   addPlayer = async (userID, bookingID) => {
-    console.log(userID, 'this is the user ID service')
-    console.log(bookingID, 'this is the booking ID service')
+
     const res = await this.booking.post(`/booking/addPlayer/${bookingID}/${userID}`)
+    return res.data
+  }
+
+  declareWinners = async (winners, id) => {
+    
+    const res = await this.booking.post(`/booking/declarewinners/${id}`, {winners})
+    console.log(id, 'this is the booking of the ID')
     return res.data
   }
 
