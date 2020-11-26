@@ -1,7 +1,7 @@
 # IronPadel
 
 ![IronPadel](<img src="/ironpadel_azul claro.png">)
-<img src="/public/ironpadel_azul claro.png">
+
 
 ## Description
 
