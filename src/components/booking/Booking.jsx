@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import { withAuth } from "../../lib/AuthProvider";
 
 // CSS
@@ -22,7 +21,6 @@ class Booking extends Component {
 
   componentDidMount = async () => {
     const dates = await this.props.getDates();
-    console.log(dates);
     this.setState({
       dates: dates,
     });
@@ -76,13 +74,13 @@ class Booking extends Component {
     this.setState({
       date: theDate,
       day: day,
-      available: theDate.available.sort(function(a,b){
-        if(a < b){
-          return -1
+      available: theDate.available.sort(function (a, b) {
+        if (a < b) {
+          return -1;
         } else {
-          return 1
+          return 1;
         }
-      })
+      }),
     });
   };
 
@@ -123,9 +121,9 @@ class Booking extends Component {
               <label>Day:</label>
               <select onChange={(e) => this.getDay(e)}>
                 <option>-</option>
-                {this.state.dates.map(function (date) {
+                {this.state.dates.map(function (date, index) {
                   return (
-                    <option name="day" value={date.day}>
+                    <option name="day" key={index} value={date.day}>
                       {date.day}
                     </option>
                   );

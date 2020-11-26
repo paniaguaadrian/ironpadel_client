@@ -20,12 +20,10 @@ class CTACommunity extends Component {
           <div className="CTANewUsers_subTitle">
             <h3>
               TAKE A LOOK AT
-              <Link to={"/community"}>
-                <br />
-                <span>ALL CURRENT MATCHES</span>
-                <br />
-                <span>& BEST PLAYERS</span>
-              </Link>
+              <br />
+              <span>ALL CURRENT MATCHES</span>
+              <br />
+              <span>& BEST PLAYERS</span>
             </h3>
           </div>
         </Link>

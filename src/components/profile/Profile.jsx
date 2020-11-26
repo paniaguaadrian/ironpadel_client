@@ -47,8 +47,6 @@ class Profile extends Component {
   };
 
   handleFileUpload = async (e) => {
-    console.log("the file to be uploaded is: ", e.target.files[0]);
-
     // creamos un nuevo objeto FormData
     const uploadData = new FormData();
 
@@ -57,8 +55,6 @@ class Profile extends Component {
 
     try {
       const res = await editservice.handleUpload(uploadData);
-
-      console.log("response is", res);
 
       this.setState({ image: res.secure_url });
     } catch (error) {
@@ -78,7 +74,7 @@ class Profile extends Component {
         image,
         id,
       });
-      console.log(username, "this is the users name");
+
       this.setState({
         username: "",
         description: "",
@@ -92,7 +88,6 @@ class Profile extends Component {
   };
 
   render() {
-    console.log(this.state.user);
     return (
       <div key={window.location.pathname} className="auth_container">
         {this.state.user !== undefined &&
@@ -156,7 +151,11 @@ class Profile extends Component {
                   Games played: <span>{this.state.user.games}</span>
                 </p>
                 <p>
-                  Games won 🎉 : <span>{this.state.user.wins}</span>
+                  Games won{" "}
+                  <span role="img" aria-label="icono bonito">
+                    🎉
+                  </span>
+                  : <span>{this.state.user.wins}</span>
                 </p>
               </div>
             </div>
@@ -166,9 +165,9 @@ class Profile extends Component {
               </div>
               <div className="achievements_alone">
                 {this.state.user.achievements
-                  ? this.state.user.achievements.map((achievement) => {
+                  ? this.state.user.achievements.map((achievement, index) => {
                       return (
-                        <div className="each_achievement">
+                        <div key={index} className="each_achievement">
                           <img
                             src={achievement.image}
                             alt=""
@@ -202,7 +201,11 @@ class Profile extends Component {
                   Games played: <span>{this.state.user.games}</span>
                 </p>
                 <p>
-                  Games won 🎉 : <span>{this.state.user.wins}</span>
+                  Games won{" "}
+                  <span role="img" aria-label="icono bonito">
+                    🎉
+                  </span>{" "}
+                  : <span>{this.state.user.wins}</span>
                 </p>
               </div>
             </div>

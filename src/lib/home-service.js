@@ -8,9 +8,11 @@ class Home {
     });
   }
 
-  home = async () => {
+  homes = async () => {
     try {
-      const res = await this.home.get("/");
+      const res = await axios.get("http://localhost:4000/home/main", {
+        withCredentials: true,
+      });
       return res.data;
     } catch (error) {
       console.log(error);
@@ -19,7 +21,7 @@ class Home {
 
   deleteNotification = async (id) => {
     try {
-      const res = await this.home.post(`/notificationDelete/${id}`);
+      const res = await this.home.post(`/home/main/notificationDelete/${id}`);
       return res.data;
     } catch (error) {
       console.log(error);

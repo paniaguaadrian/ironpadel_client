@@ -23,7 +23,7 @@ class Navbar extends Component {
   };
 
   render() {
-    const { user, isLoggedin } = this.props;
+    const { isLoggedin } = this.props;
     return (
       <nav className="NavbarItems">
         <Link to={"/"}>

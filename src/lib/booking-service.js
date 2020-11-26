@@ -48,7 +48,6 @@ class Booking {
       return res.data;
     } catch (error) {
       console.log(error);
-      console.log(id, "again, the id should be this!!!");
     }
   };
 
@@ -72,7 +71,7 @@ class Booking {
     const res = await this.booking.post(`/booking/declarewinners/${id}`, {
       winners,
     });
-    console.log(id, "this is the booking of the ID");
+
     return res.data;
   };
 
@@ -89,8 +88,6 @@ class Booking {
 
   deletePlayer = async (playerId, bookingId) => {
     try {
-      console.log(playerId, "is this the player id???");
-      console.log(bookingId, "is this the booking id???");
       const res = await this.booking.post(
         `/booking/deletePlayer/${bookingId}/${playerId}`
       );

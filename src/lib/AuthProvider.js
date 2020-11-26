@@ -6,7 +6,6 @@ import React from "react";
 
 // Llamadas axios a la API
 import auth from "./auth-service";
-import community from "./community-service";
 import booking from "./booking-service";
 import home from "./home-service";
 import profile from "./profile-service";
@@ -126,8 +125,12 @@ class AuthProvider extends React.Component {
 
   // getUserBookings deberia de ser getUser
   getUserBookings = async () => {
-    const bookings = await home.home();
-    return bookings;
+    try {
+      const bookings = await home.home();
+      return bookings;
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   getDates = async () => {
@@ -143,7 +146,7 @@ class AuthProvider extends React.Component {
 
   editBooking = async (id) => {
     const newBooking = await booking.editBooking(id);
-    console.log(id, "this should be the id");
+
     return newBooking;
   };
 

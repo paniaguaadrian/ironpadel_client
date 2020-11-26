@@ -11,7 +11,7 @@ class Community {
   getCommunity = async () => {
     try {
       const theBookings = await this.community.get("/community");
-      console.log(theBookings, "these are the bookings!!!!!!");
+
       return theBookings;
     } catch (error) {
       console.log(error);

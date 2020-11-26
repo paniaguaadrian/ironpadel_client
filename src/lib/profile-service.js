@@ -25,8 +25,6 @@ class Profile {
     }
   };
   handleUpload = async (theFile) => {
-    console.log("file in service: ", theFile);
-
     try {
       const res = await this.profile.post("/profile/uploadpicture", theFile);
       return res.data;

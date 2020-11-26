@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import { withAuth } from "../../lib/AuthProvider";
 import bookingservice from "../../lib/booking-service";
 
@@ -72,9 +71,6 @@ class Booking extends Component {
     try {
       event.preventDefault();
       const { winner1, winner2, id } = this.state;
-      console.log(winner1);
-      console.log(winner2);
-      console.log(id);
       await bookingservice.declareWinners({ winner1, winner2 }, id);
       this.setState({
         winner1,
@@ -152,20 +148,13 @@ class Booking extends Component {
     });
   };
 
-  ///////////////////////////////////////////////////////////////////////////////////////
   render() {
     const { name, id, wasDeleted, gameDeleted, wasAdded, booking } = this.state;
     const { user } = this.props;
     const removePlayer = this.deletePlayer;
     const removeGame = this.deleteGame;
     const joinThisGame = this.addPlayer;
-    // const winners = []
-    // if(booking.players){
-    //   booking.players.filter((player) => {
-    //   if(player._id === this.state.winner1 || player._id === this.state.winner2){
-    //     winners.push(player)
-    //   }
-    // })}
+
     return (
       <div>
         {this.state.participants.length !== 0 &&
@@ -180,7 +169,6 @@ class Booking extends Component {
                     type="text"
                     name="name"
                     value={name}
-                    // placeholder={this.state.booking.name}
                     onChange={this.handleChange}
                   />
                 </div>
@@ -312,7 +300,7 @@ class Booking extends Component {
                                 className="delete-btn"
                                 onClick={() => removePlayer(player._id, id)}
                               >
-                                <i class="fas fa-times delete-me"></i>
+                                <i className="fas fa-times delete-me"></i>
                               </button>
                             </div>
                           ) : index === 0 ? (

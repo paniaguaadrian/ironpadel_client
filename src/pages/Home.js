@@ -19,18 +19,23 @@ class Home extends Component {
   };
 
   getInfo = async () => {
-    const theUser = await this.props.getUserBookings();
-    const theBookings = await this.props.getUserGames();
-
-    this.setState({
-      user: theUser.data,
-      bookings: theBookings,
-      notifications: theUser.data.notifications.reverse(),
-    });
+    try {
+      const theUser = await homeservice.homes();
+      const theBookings = await this.props.getUserGames();
+      return { theUser, theBookings };
+    } catch (error) {
+      console.error(error);
+    }
   };
 
-  componentDidMount = () => {
-    this.getInfo();
+  componentDidMount = async () => {
+    const thisInfo = await this.getInfo();
+
+    this.setState({
+      user: thisInfo.theUser,
+      bookings: thisInfo.theBookings,
+      notifications: thisInfo.theUser.notifications.reverse(),
+    });
   };
 
   // componentDidUpdate = () => {
@@ -57,7 +62,7 @@ class Home extends Component {
         {this.props.isLoggedin ? (
           <div>
             <h1 className="Welcome_title">
-              <i class="fas fa-baseball-ball App-logo"></i> Welcome{" "}
+              <i className="fas fa-baseball-ball App-logo"></i> Welcome{" "}
               {this.state.user.username}!
             </h1>
             <div className="wrapper-mobile-home">
@@ -79,7 +84,7 @@ class Home extends Component {
                             {booking.players
                               ? booking.players.map((player, index) => {
                                   return (
-                                    <div>
+                                    <div key={index}>
                                       <img
                                         src={player.image}
                                         style={{ width: 25 }}
@@ -121,9 +126,12 @@ class Home extends Component {
                 <div className="Notifications_container">
                   <h1>Notifications</h1>
                   {this.state.notifications.length !== 0 ? (
-                    this.state.notifications.map(function (notification) {
+                    this.state.notifications.map(function (
+                      notification,
+                      index
+                    ) {
                       return notification.booking ? (
-                        <div className="Notification_container">
+                        <div key={index} className="Notification_container">
                           <Link to={`booking/${notification.booking}`}>
                             <p>{notification.message}</p>
                           </Link>
