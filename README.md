@@ -1,6 +1,6 @@
 # IronPadel
 
-![IronPadel]
+
 <img src="/public/ironpadel_azul claro.png">
 
 ## Description
