@@ -10,9 +10,7 @@ class Home {
 
   homes = async () => {
     try {
-      const res = await axios.get("http://localhost:4000/home/main", {
-        withCredentials: true,
-      });
+      const res = await this.home.get("/home/main");
       return res.data;
     } catch (error) {
       console.log(error);
