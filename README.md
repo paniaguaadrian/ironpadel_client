@@ -52,61 +52,62 @@ The MVP will cover the following:
 
 **Frontend structure**
 ironpadel_client/
-├── .gitignore
-├── .env.developement
-├── .env.production
-├── package.json
-├── app.js
-├── README.md
-├── public
-├── build
-└── src
-├── App.js
-├── App.css
-├── index.js
-├── pages
-│ ├── auth.css
-│ ├── Home.css
-│ ├── Home.js
-│ ├── Login.js
-│ ├── Private.js
-│ └── Signup.js
-├── lib
-│ ├── auth-service.js
-│ ├── AuthProvider.js
-│ ├── booking-service.js
-│ ├── community-service.js
-│ ├── home-service.js
-│ └── profile-service.js
-└── components
-├── booking
-│ ├── Booking.css
-│ ├── Booking.js
-│ └── EditBooking.js
-├── community
-│ ├── Community.css
-│ └── Community.js
-├── componentRoutes
-│ ├── AnonRoute.js
-│ └── PrivateRoute.js
-├── ctaBooking
-│ ├── CTABooking.css
-│ └── CTABooking.js
-├── CTACommunity
-│ ├── CTACommunity.css
-│ └── CTACommunity.js
-├── ctaNewUsers
-│ ├── CTANewUsers.css
-│ └── CTANewUsers.js
-├── fixedComponents
-│ ├── Button.js
-│ ├── Button.css
-│ └── navbar
-│ ├── Navbar.css
-│ └── Navbar.js
-└── profile
-├── Profile.css
-└── Profile.js
+
+        ├── .gitignore
+        ├── .env.developement
+        ├── .env.production
+        ├── package.json
+        ├── app.js
+        ├── README.md
+        ├── public
+        ├── build
+        └── src
+        ├── App.js
+        ├── App.css
+        ├── index.js
+        ├── pages
+        │       ├── auth.css
+        │       ├── Home.css
+        │       ├── Home.js
+        │       ├── Login.js
+        │       ├── Private.js
+        │       └── Signup.js
+        ├── lib
+        │   ├── auth-service.js
+        │   ├── AuthProvider.js
+        │   ├── booking-service.js
+        │   ├── community-service.js
+        │   ├── home-service.js
+        │   └── profile-service.js
+        └── components
+        ├── booking
+        │       ├── Booking.css
+        │       ├── Booking.js
+        │       └── EditBooking.js
+        ├── community
+        │       ├── Community.css
+        │       └── Community.js
+        ├── componentRoutes
+        │       ├── AnonRoute.js
+        │       └── PrivateRoute.js
+        ├── ctaBooking
+        │       ├── CTABooking.css
+        │       └── CTABooking.js
+        ├── CTACommunity
+        │       ├── CTACommunity.css
+        │       └── CTACommunity.js
+        ├── ctaNewUsers
+        │       ├── CTANewUsers.css
+        │       └── CTANewUsers.js
+        ├── fixedComponents
+        │       ├── Button.js
+        │       ├── Button.css
+        │       └── navbar
+        │               ├── Navbar.css
+        │               └── Navbar.js
+        └── profile
+        ├── Profile.css
+        └── Profile.js
 
 ## Links
 
