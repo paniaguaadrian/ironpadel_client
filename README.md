@@ -112,7 +112,7 @@ ironpadel_client/
 ## Links
 
 **GitHub_server** https://github.com/EBM90/ironpadel_server
-**GitHub_client** https://github.com/EBM90/ironpadel_client
+**GitHub_client** https://github.com/paniaguaadrian/ironpadel_client
 **Heroku** https://ironpadel.herokuapp.com/
 **Trello** https://trello.com/b/ZfofYARC/ironpaddle
 **References**
